@@ -419,21 +419,51 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
 
 <script>
 const API = 'https://mqqgrcyqsifjkeverbgb.supabase.co/functions/v1/api';
+
 let allPlans = {};
 let currentNet = 'MTN';
-let selectedStars = 5;
-let countdownInterval = null;
-let pollInterval = null;
+let selectedStarsVal = 5;
 
-// ── Load plans from backend
 async function loadPlans() {
   try {
-    const res = await fetch(`${API}/plans`);
-    const data = await res.json();
-    if (data.success) {
-      allPlans = data.plans;
-      renderPlans();
+    // Fetch all networks separately to get all plans
+    const networks = ['mtn', 'airteltigo', 'telecel', 'glo'];
+    const networkMap = {
+      mtn: 'MTN',
+      airteltigo: 'AirtelTigo',
+      telecel: 'Telecel',
+      glo: 'Glo'
+    };
+
+    const grouped = {};
+
+    await Promise.all(networks.map(async (net) => {
+      try {
+        const res = await fetch(`${API}/plans?network=${net}`);
+        const data = await res.json();
+        if (data.success && data.plans) {
+          Object.entries(data.plans).forEach(([netName, plans]) => {
+            if (!grouped[netName]) grouped[netName] = [];
+            grouped[netName].push(...plans);
+          });
+        }
+      } catch (e) {
+        console.log(`Could not load ${net} plans:`, e);
+      }
+    }));
+
+    if (Object.keys(grouped).length === 0) {
+      // fallback — try fetching all at once
+      const res = await fetch(`${API}/plans`);
+      const data = await res.json();
+      if (data.success) {
+        allPlans = data.plans;
+      }
+    } else {
+      allPlans = grouped;
     }
+
+    renderPlans();
   } catch (err) {
     document.getElementById('plans-grid').innerHTML = `
       <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)">
@@ -453,29 +483,40 @@ function setTab(net) {
 function renderPlans() {
   const ps = allPlans[currentNet] || [];
   if (!ps.length) {
-    document.getElementById('plans-grid').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)">No plans available for ${currentNet} right now.</div>`;
+    document.getElementById('plans-grid').innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)">
+        <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;margin-bottom:.5rem"></i>
+        <p>Loading ${currentNet} plans...</p>
+      </div>`;
     return;
   }
   document.getElementById('plans-grid').innerHTML = ps.map(p => `
-    <div class="plan-card ${p.popular ? 'popular' : ''}" onclick="openBuy('${p.id}','${p.network}',${p.gb},'${p.validity}',${p.price})">
+    <div class="plan-card ${p.popular ? 'popular' : ''}" 
+         onclick="openBuy('${p.id}','${p.network}',${p.gb},${p.volumeMB},'${p.validity}',${p.price})">
       ${p.popular ? '<div class="pop-badge">⚡ Most Popular</div>' : ''}
       <div class="plan-gb">${p.gb} <span>GB</span></div>
-      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.72rem"></i> ${p.validity}</div>
+      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.72rem"></i> ${p.validity.substring(0, 30)}</div>
       <div class="plan-price">GH₵ ${p.price.toFixed(2)}</div>
       <div class="plan-was">Was GH₵ ${p.was.toFixed(2)}</div>
-      <div class="plan-save">Save ${Math.round((1 - p.price / p.was) * 100)}%</div>
+      <div class="plan-save">${p.save}</div>
       <button class="plan-btn"><i class="fa-solid fa-cart-plus"></i> Buy Now</button>
     </div>
   `).join('');
 }
 
-function openBuy(planId, network, gb, validity, price) {
+function openBuy(planId, network, gb, volumeMB, validity, price) {
   document.getElementById('buy-body').innerHTML = `
     <h3>Complete Purchase</h3>
     <p class="modal-sub">Fill in your details to receive your data bundle</p>
     <div class="plan-summary">
-      <div><div class="ps-label">Plan</div><div class="ps-val">${network} · ${gb}GB · ${validity}</div></div>
-      <div style="text-align:right"><div class="ps-label">Total</div><div class="ps-price">GH₵ ${price.toFixed(2)}</div></div>
+      <div>
+        <div class="ps-label">Plan</div>
+        <div class="ps-val">${network} · ${gb}GB</div>
+      </div>
+      <div style="text-align:right">
+        <div class="ps-label">Total</div>
+        <div class="ps-price">GH₵ ${parseFloat(price).toFixed(2)}</div>
+      </div>
     </div>
     <div class="form-group">
       <label><i class="fa-solid fa-mobile-screen" style="color:var(--primary)"></i> Phone number to top up</label>
@@ -485,39 +526,58 @@ function openBuy(planId, network, gb, validity, price) {
       <label><i class="fa-solid fa-envelope" style="color:var(--primary)"></i> Email (optional — for receipt)</label>
       <input type="email" id="em" placeholder="e.g. you@gmail.com">
     </div>
-    <button class="modal-btn" id="pay-btn" onclick="initiatePayment('${planId}','${network}',${gb},'${validity}',${price})">
-      <i class="fa-solid fa-lock"></i> Pay GH₵ ${price.toFixed(2)} Securely
+    <button class="modal-btn" id="pay-btn" 
+      onclick="initiatePayment('${planId}','${network}',${gb},${volumeMB},'${validity}',${price})">
+      <i class="fa-solid fa-lock"></i> Pay GH₵ ${parseFloat(price).toFixed(2)} Securely
     </button>
-    <div class="modal-secure"><i class="fa-solid fa-shield-halved"></i> Protected by Paystack · SSL encrypted</div>
+    <div class="modal-secure">
+      <i class="fa-solid fa-shield-halved"></i> Protected by Paystack · SSL encrypted
+    </div>
   `;
   document.getElementById('buy-modal').classList.add('open');
 }
 
-async function initiatePayment(planId, network, gb, validity, price) {
+async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
   const phone = document.getElementById('ph').value.trim();
   const email = document.getElementById('em').value.trim();
-  if (!phone || phone.replace(/\s/g, '').length < 10) { alert('Please enter a valid phone number.'); return; }
+
+  if (!phone || phone.replace(/\s/g, '').length < 10) {
+    alert('Please enter a valid phone number.');
+    return;
+  }
 
   const btn = document.getElementById('pay-btn');
   btn.disabled = true;
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
 
   try {
+    const payload = {
+      planId:   String(planId),
+      network:  String(network),
+      gb:       Number(gb),
+      volumeMB: Number(volumeMB),
+      validity: String(validity),
+      price:    Number(price),
+      phone:    String(phone),
+      email:    email || null
+    };
+
+    console.log('Sending payload:', payload);
+
     const res = await fetch(`${API}/initiate-payment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ planId, network, gb, validity, price, phone, email })
+      body: JSON.stringify(payload)
     });
+
     const data = await res.json();
     if (!data.success) throw new Error(data.message);
 
-    // Save order ID to localStorage so payment-success page can track it
     localStorage.setItem('td_order_id', data.orderId);
     localStorage.setItem('td_phone', phone);
     localStorage.setItem('td_network', network);
     localStorage.setItem('td_gb', gb);
 
-    // Redirect to Paystack payment page
     window.location.href = data.paymentUrl;
   } catch (err) {
     btn.disabled = false;
@@ -526,10 +586,14 @@ async function initiatePayment(planId, network, gb, validity, price) {
   }
 }
 
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
 
 document.querySelectorAll('.overlay').forEach(o => {
-  o.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+  o.addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
 });
 
 function toggleFaq(el) {
@@ -539,7 +603,6 @@ function toggleFaq(el) {
   if (!isOpen) item.classList.add('open');
 }
 
-let selectedStarsVal = 5;
 function initStars() {
   const stars = document.querySelectorAll('#star-input i');
   stars.forEach(s => {
@@ -561,24 +624,27 @@ function openReviewModal() {
 
 function submitReview() {
   const name = document.getElementById('rev-name').value.trim();
-  const loc = document.getElementById('rev-loc').value.trim();
+  const loc  = document.getElementById('rev-loc').value.trim();
   const text = document.getElementById('rev-text').value.trim();
   if (!name || !text) { alert('Please fill in your name and review.'); return; }
-  const stars = '★'.repeat(selectedStarsVal) + '☆'.repeat(5 - selectedStarsVal);
+  const stars    = '★'.repeat(selectedStarsVal) + '☆'.repeat(5 - selectedStarsVal);
   const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
-  const card = document.createElement('div');
+  const card     = document.createElement('div');
   card.className = 'review-card';
   card.innerHTML = `
     <div class="stars">${stars}</div>
     <div class="review-text">"${text}"</div>
     <div class="reviewer">
       <div class="rev-avatar">${initials}</div>
-      <div><div class="rev-name">${name}</div><div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.7rem"></i> ${loc || 'Ghana'}</div></div>
+      <div>
+        <div class="rev-name">${name}</div>
+        <div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.7rem"></i> ${loc || 'Ghana'}</div>
+      </div>
     </div>`;
   document.getElementById('reviews-grid').prepend(card);
   closeModal('review-modal');
   document.getElementById('rev-name').value = '';
-  document.getElementById('rev-loc').value = '';
+  document.getElementById('rev-loc').value  = '';
   document.getElementById('rev-text').value = '';
 }
 
