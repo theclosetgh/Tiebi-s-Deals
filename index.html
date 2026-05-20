@@ -420,6 +420,7 @@ async function loadPlans() {
         if (!allPlans[net] || !allPlans[net].length) {
           t.style.display = 'none';
         } else {
+          t.style.display = 'block';
           t.classList.toggle('active', net === firstNet);
         }
       });
