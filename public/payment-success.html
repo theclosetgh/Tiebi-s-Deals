@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Tracking — Tiebi's Deals</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#0ea66e;--primary-dark:#0a7d53;--primary-light:#e6f7f1;--accent:#f59e0b;--bg:#f8faf9;--dark:#0d1f18;--text:#1a2e25;--text2:#4a6358;--text3:#7a9b8e;--border:#e0ece7;--radius:12px;--radius-lg:18px}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+.card{background:#fff;border-radius:var(--radius-lg);border:1.5px solid var(--border);padding:2.5rem;width:100%;max-width:460px;box-shadow:0 8px 32px rgba(14,166,110,0.1)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:2rem;justify-content:center}
+.logo-icon{width:36px;height:36px;background:var(--primary);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff}
+.logo-text{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:var(--dark)}
+.logo-text span{color:var(--primary)}
+h2{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;color:var(--dark);margin-bottom:.4rem;text-align:center}
+.sub{font-size:.88rem;color:var(--text3);text-align:center;margin-bottom:1.5rem}
+.order-info{background:var(--bg);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.oi-item{font-size:.83rem}
+.oi-label{color:var(--text3);margin-bottom:2px}
+.oi-val{font-weight:700;color:var(--dark)}
+.tracker{margin-bottom:1.5rem}
+.tracker-title{font-size:.82rem;font-weight:700;color:var(--text2);margin-bottom:1rem;display:flex;align-items:center;gap:6px}
+.t-step{display:flex;align-items:center;gap:12px;padding:.6rem 0;border-bottom:1px solid var(--border)}
+.t-step:last-child{border-bottom:none}
+.t-dot{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;background:#fff;transition:all .4s}
+.t-step.done .t-dot{background:var(--primary);border-color:var(--primary);color:#fff}
+.t-step.active .t-dot{border-color:var(--primary);background:var(--primary-light);color:var(--primary)}
+.t-info{flex:1}
+.t-name{font-size:.88rem;font-weight:600;color:var(--text3)}
+.t-step.done .t-name{color:var(--primary-dark)}
+.t-step.active .t-name{color:var(--dark)}
+.t-time{font-size:.75rem;color:var(--text3);margin-top:2px}
+.countdown-box{text-align:center;background:var(--primary-light);border-radius:10px;padding:1rem;margin-bottom:1.5rem}
+.countdown-val{font-family:'Fraunces',serif;font-size:2.5rem;font-weight:600;color:var(--primary);line-height:1}
+.countdown-label{font-size:.8rem;color:var(--primary-dark);margin-top:4px}
+.warn-box{background:#fff8e6;border:1px solid #fcd34d;border-radius:10px;padding:.85rem 1rem;font-size:.82rem;color:#92400e;display:none;align-items:center;gap:8px;margin-bottom:1.5rem}
+.delivered-box{background:var(--primary-light);border:1.5px solid var(--primary);border-radius:10px;padding:1.2rem;text-align:center;display:none;margin-bottom:1.5rem}
+.delivered-box i{font-size:2rem;color:var(--primary);margin-bottom:.5rem}
+.delivered-box h3{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--dark);margin-bottom:.3rem}
+.delivered-box p{font-size:.83rem;color:var(--text2)}
+.failed-box{background:#fef2f2;border:1.5px solid #fca5a5;border-radius:10px;padding:1.2rem;text-align:center;display:none;margin-bottom:1.5rem}
+.failed-box i{font-size:2rem;color:#dc2626;margin-bottom:.5rem}
+.failed-box h3{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--dark);margin-bottom:.3rem}
+.failed-box p{font-size:.83rem;color:var(--text2)}
+.back-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--primary);color:#fff;padding:.8rem;border-radius:var(--radius);text-decoration:none;font-weight:600;font-size:.92rem;transition:background .2s;width:100%}
+.back-btn:hover{background:var(--primary-dark)}
+.wa-help{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:.75rem;font-size:.82rem;color:var(--text3)}
+.wa-help a{color:var(--primary);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <a class="logo" href="/">
+    <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+    <div class="logo-text">Tiebi's <span>Deals</span></div>
+  </a>
+  <h2>Order Placed!</h2>
+  <p class="sub">Payment confirmed. Your data is being processed now.</p>
+
+  <div class="order-info" id="order-info">
+    <div class="oi-item"><div class="oi-label">Network</div><div class="oi-val" id="oi-network">—</div></div>
+    <div class="oi-item"><div class="oi-label">Bundle</div><div class="oi-val" id="oi-gb">—</div></div>
+    <div class="oi-item"><div class="oi-label">Phone</div><div class="oi-val" id="oi-phone">—</div></div>
+    <div class="oi-item"><div class="oi-label">Order ID</div><div class="oi-val" id="oi-id">—</div></div>
+  </div>
+
+  <div class="countdown-box" id="countdown-box">
+    <div class="countdown-val" id="countdown">30:00</div>
+    <div class="countdown-label">Estimated delivery time remaining</div>
+  </div>
+
+  <div class="warn-box" id="warn-box">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <span>Taking longer than usual? <a href="https://wa.me/233503674353" style="color:#92400e;font-weight:700">WhatsApp us</a> and we'll check on your order immediately.</span>
+  </div>
+
+  <div class="tracker">
+    <div class="tracker-title"><i class="fa-solid fa-route" style="color:var(--primary)"></i> Live Order Status</div>
+    <div class="t-step" id="step-paid">
+      <div class="t-dot"><i class="fa-solid fa-check"></i></div>
+      <div class="t-info"><div class="t-name">Payment confirmed</div><div class="t-time" id="time-paid">—</div></div>
+    </div>
+    <div class="t-step" id="step-sending">
+      <div class="t-dot"><i class="fa-solid fa-paper-plane"></i></div>
+      <div class="t-info"><div class="t-name">Sending data to network</div><div class="t-time" id="time-sending">Waiting...</div></div>
+    </div>
+    <div class="t-step" id="step-delivered">
+      <div class="t-dot"><i class="fa-solid fa-rocket"></i></div>
+      <div class="t-info"><div class="t-name">Data delivered to your phone</div><div class="t-time" id="time-delivered">Pending</div></div>
+    </div>
+  </div>
+
+  <div class="delivered-box" id="delivered-box">
+    <i class="fa-solid fa-circle-check"></i>
+    <h3>Data Delivered!</h3>
+    <p>Your bundle has arrived on your phone. Check your SMS for confirmation.</p>
+  </div>
+
+  <div class="failed-box" id="failed-box">
+    <i class="fa-solid fa-circle-xmark"></i>
+    <h3>Delivery Issue</h3>
+    <p>Something went wrong sending your data. Please WhatsApp us immediately and we will fix it.</p>
+  </div>
+
+  <a class="back-btn" href="/"><i class="fa-solid fa-house"></i> Back to Home</a>
+  <div class="wa-help">Need help? <a href="https://wa.me/233503674353" target="_blank">WhatsApp 0503674353</a></div>
+</div>
+
+<script>
+const API = '';
+const orderId = localStorage.getItem('td_order_id');
+const phone   = localStorage.getItem('td_phone');
+const network = localStorage.getItem('td_network');
+const gb      = localStorage.getItem('td_gb');
+
+document.getElementById('oi-network').textContent = network || '—';
+document.getElementById('oi-gb').textContent      = gb ? `${gb}GB` : '—';
+document.getElementById('oi-phone').textContent   = phone || '—';
+document.getElementById('oi-id').textContent      = orderId ? orderId.slice(0, 8) + '...' : '—';
+
+// Countdown — 30 minutes
+let totalSeconds = 30 * 60;
+let warnShown = false;
+
+function updateCountdown() {
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  document.getElementById('countdown').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  if (totalSeconds <= 10 * 60 && !warnShown) {
+    document.getElementById('warn-box').style.display = 'flex';
+    warnShown = true;
+  }
+  if (totalSeconds > 0) totalSeconds--;
+}
+
+const cdInterval = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+function formatTime(iso) {
+  if (!iso) return '—';
+  return new Date(iso).toLocaleTimeString('en-GH', { hour: '2-digit', minute: '2-digit' });
+}
+
+function updateTracker(order) {
+  const paid     = document.getElementById('step-paid');
+  const sending  = document.getElementById('step-sending');
+  const delivered= document.getElementById('step-delivered');
+
+  if (['paid','sending','delivered','failed'].includes(order.status)) {
+    paid.classList.add('done');
+    document.getElementById('time-paid').textContent = formatTime(order.paid_at);
+  }
+  if (['sending','delivered'].includes(order.status)) {
+    sending.classList.remove('active');
+    sending.classList.add('done');
+    document.getElementById('time-sending').textContent = formatTime(order.sending_at);
+  } else if (order.status === 'paid') {
+    sending.classList.add('active');
+  }
+  if (order.status === 'delivered') {
+    delivered.classList.add('done');
+    document.getElementById('time-delivered').textContent = formatTime(order.delivered_at);
+    document.getElementById('delivered-box').style.display = 'block';
+    document.getElementById('countdown-box').style.display = 'none';
+    document.getElementById('warn-box').style.display = 'none';
+    clearInterval(cdInterval);
+    clearInterval(pollInterval);
+  }
+  if (order.status === 'failed') {
+    document.getElementById('failed-box').style.display = 'block';
+    document.getElementById('countdown-box').style.display = 'none';
+    clearInterval(cdInterval);
+    clearInterval(pollInterval);
+  }
+}
+
+async function pollOrder() {
+  if (!orderId) return;
+  try {
+    const res  = await fetch(`${API}/order/${orderId}`);
+    const data = await res.json();
+    if (data.success) updateTracker(data.order);
+  } catch (e) {
+    console.log('Poll error:', e);
+  }
+}
+
+// Poll every 15 seconds
+const pollInterval = setInterval(pollOrder, 15000);
+pollOrder(); // immediate first check
+</script>
+</body>
+</html>
