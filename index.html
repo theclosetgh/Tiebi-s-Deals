@@ -423,13 +423,16 @@ async function loadPlans() {
           t.classList.toggle('active', net === firstNet);
         }
       });
-      document.querySelectorAll('.network-card').forEach(card => {
+    document.querySelectorAll('.network-card').forEach(card => {
         const name = card.querySelector('.network-name').textContent.trim();
         if (!allPlans[name] || !allPlans[name].length) {
           card.style.opacity = '0.4';
           card.style.cursor = 'not-allowed';
           card.querySelector('.network-tag').textContent = 'Coming soon';
           card.onclick = null;
+        } else {
+          card.style.opacity = '1';
+          card.style.cursor = 'pointer';
         }
       });
     }
