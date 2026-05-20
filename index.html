@@ -16,139 +16,196 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,250,249,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:68px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-icon{width:38px;height:38px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem}
-.logo-text{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;color:var(--text)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,250,249,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem;height:60px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo-icon{width:34px;height:34px;background:var(--primary);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;flex-shrink:0}
+.logo-text{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:var(--text)}
 .logo-text span{color:var(--primary)}
-nav ul{list-style:none;display:flex;gap:2rem}
-nav ul a{color:var(--text2);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
-nav ul a:hover{color:var(--primary)}
-.nav-wa{background:transparent;color:#25D366;border:1.5px solid #25D366;padding:.5rem 1.1rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:6px;text-decoration:none}
+.nav-desktop{list-style:none;display:flex;gap:2rem}
+.nav-desktop a{color:var(--text2);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-desktop a:hover{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:.6rem}
+.nav-wa{background:transparent;color:#25D366;border:1.5px solid #25D366;padding:.45rem 1rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:5px;text-decoration:none;white-space:nowrap}
 .nav-wa:hover{background:#25D366;color:#fff}
-.nav-cta{background:var(--primary);color:#fff;border:none;cursor:pointer;padding:.55rem 1.4rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:600;transition:background .2s;display:flex;align-items:center;gap:6px}
+.nav-cta{background:var(--primary);color:#fff;border:none;cursor:pointer;padding:.45rem 1rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;transition:background .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
 .nav-cta:hover{background:var(--primary-dark)}
-.nav-actions{display:flex;align-items:center;gap:.75rem}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:9rem 2rem 5rem;position:relative;overflow:hidden}
-.hero-blob{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(14,166,110,0.07) 0%,transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);color:var(--primary-dark);border-radius:100px;padding:.4rem 1.1rem;font-size:.8rem;font-weight:600;margin-bottom:1.8rem;border:1px solid rgba(14,166,110,0.2)}
-h1{font-family:'Fraunces',serif;font-size:clamp(2.6rem,6vw,5rem);font-weight:600;line-height:1.1;letter-spacing:-1px;margin-bottom:1.3rem;color:var(--dark)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero-blob{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(14,166,110,0.07) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--primary-light);color:var(--primary-dark);border-radius:100px;padding:.35rem 1rem;font-size:.78rem;font-weight:600;margin-bottom:1.5rem;border:1px solid rgba(14,166,110,0.2)}
+h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,8vw,5rem);font-weight:600;line-height:1.1;letter-spacing:-1px;margin-bottom:1.2rem;color:var(--dark)}
 h1 em{color:var(--primary);font-style:normal}
-.hero-sub{font-size:1.05rem;color:var(--text2);max-width:480px;line-height:1.75;margin-bottom:2.5rem}
-.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;justify-content:center}
-.btn-primary{background:var(--primary);color:#fff;padding:.85rem 2rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(14,166,110,0.3)}
+.hero-sub{font-size:1rem;color:var(--text2);max-width:420px;line-height:1.75;margin-bottom:2rem}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--primary);color:#fff;padding:.8rem 1.75rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px;box-shadow:0 4px 16px rgba(14,166,110,0.3)}
 .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px)}
-.btn-ghost{background:#fff;color:var(--text);padding:.85rem 2rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:600;border:1.5px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-ghost{background:#fff;color:var(--text);padding:.8rem 1.75rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;font-weight:600;border:1.5px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px}
 .btn-ghost:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
-.hero-trust{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;justify-content:center}
-.trust-item{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--text3);font-weight:500}
-.trust-item i{color:var(--primary)}
-.stats{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.2rem 2rem;display:flex;justify-content:center;gap:5rem;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-val{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:600;color:var(--primary);line-height:1}
-.stat-label{font-size:.82rem;color:var(--text3);margin-top:4px;font-weight:500}
-.section{padding:5rem 2rem;max-width:1080px;margin:0 auto}
-.section-tag{font-size:.75rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--primary);margin-bottom:.6rem}
-h2{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:600;letter-spacing:-.5px;margin-bottom:.8rem;color:var(--dark)}
-.section-sub{color:var(--text2);font-size:.95rem;line-height:1.75;max-width:500px}
-.networks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-top:2.5rem}
-.network-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;text-align:center;transition:all .25s;cursor:pointer;box-shadow:var(--shadow)}
-.network-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.net-icon{width:58px;height:58px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto .9rem}
+.hero-trust{display:flex;align-items:center;gap:1rem;margin-top:2rem;flex-wrap:wrap;justify-content:center}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--text3);font-weight:500}
+.trust-item i{color:var(--primary);font-size:.8rem}
+
+/* STATS */
+.stats{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.75rem 1.5rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.stat{text-align:center;min-width:80px}
+.stat-val{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;color:var(--primary);line-height:1}
+.stat-label{font-size:.75rem;color:var(--text3);margin-top:3px;font-weight:500}
+
+/* SECTIONS */
+.section{padding:4rem 1.25rem;max-width:1080px;margin:0 auto}
+.section-tag{font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem}
+h2{font-family:'Fraunces',serif;font-size:clamp(1.6rem,5vw,2.5rem);font-weight:600;letter-spacing:-.5px;margin-bottom:.75rem;color:var(--dark)}
+.section-sub{color:var(--text2);font-size:.92rem;line-height:1.75;max-width:500px}
+
+/* NETWORKS */
+.networks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:2rem}
+.network-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1rem;text-align:center;transition:all .25s;cursor:pointer;box-shadow:var(--shadow)}
+.network-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.net-icon{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto .75rem}
 .mtn-c{background:#FFD700}.at-c{background:#e2001a}.telecel-c{background:#003087}.glo-c{background:#00a651}
-.network-name{font-weight:700;font-size:.95rem;margin-bottom:.3rem;color:var(--dark)}
-.network-tag{font-size:.78rem;color:var(--text3)}
-.plans-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
-.network-tabs{display:flex;gap:.5rem;flex-wrap:wrap;background:#fff;padding:5px;border-radius:10px;border:1px solid var(--border)}
-.tab{padding:.4rem 1.1rem;border-radius:7px;border:none;background:transparent;color:var(--text2);font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s}
+.network-name{font-weight:700;font-size:.88rem;margin-bottom:.25rem;color:var(--dark)}
+.network-tag{font-size:.72rem;color:var(--text3)}
+
+/* PLANS */
+.plans-section{padding:1.5rem 1.25rem 4rem;max-width:1080px;margin:0 auto}
+.plans-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
+.network-tabs{display:flex;gap:.4rem;flex-wrap:wrap;background:#fff;padding:4px;border-radius:10px;border:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:.38rem .9rem;border-radius:7px;border:none;background:transparent;color:var(--text2);font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .tab.active,.tab:hover{background:var(--primary);color:#fff}
-.plans-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
-.plan-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;position:relative;transition:all .25s;cursor:pointer;box-shadow:var(--shadow)}
-.plan-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+.plan-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;position:relative;transition:all .25s;cursor:pointer;box-shadow:var(--shadow)}
+.plan-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-md)}
 .plan-card.popular{border-color:var(--primary)}
-.pop-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.7rem;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap}
-.plan-gb{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:600;color:var(--dark);line-height:1}
-.plan-gb span{font-size:1rem;color:var(--text3);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400}
-.plan-valid{font-size:.78rem;color:var(--text3);margin:.3rem 0 1rem}
-.plan-price{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:600;color:var(--primary)}
-.plan-was{font-size:.78rem;color:var(--text3);text-decoration:line-through;margin:.2rem 0}
-.plan-save{display:inline-block;background:var(--primary-light);color:var(--primary-dark);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;margin:.5rem 0 1.1rem}
-.plan-btn{width:100%;padding:.65rem;background:var(--bg);color:var(--text);border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:600;transition:all .2s}
+.pop-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap}
+.plan-gb{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--dark);line-height:1}
+.plan-gb span{font-size:.88rem;color:var(--text3);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400}
+.plan-valid{font-size:.7rem;color:var(--text3);margin:.25rem 0 .75rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.plan-price{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;color:var(--primary)}
+.plan-was{font-size:.72rem;color:var(--text3);text-decoration:line-through;margin:.15rem 0}
+.plan-save{display:inline-block;background:var(--primary-light);color:var(--primary-dark);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:100px;margin:.4rem 0 .9rem}
+.plan-btn{width:100%;padding:.6rem;background:var(--bg);color:var(--text);border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;transition:all .2s}
 .plan-btn:hover,.plan-card.popular .plan-btn{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* HOW */
 .how-bg{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2rem;margin-top:2.5rem}
-.step-icon{width:44px;height:44px;background:var(--primary-light);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;margin-bottom:.9rem}
-.step-num{font-family:'Fraunces',serif;font-size:4rem;font-weight:600;color:var(--primary);opacity:.12;line-height:1;margin-bottom:.4rem}
-.step-title{font-weight:700;font-size:.95rem;margin-bottom:.4rem;color:var(--dark)}
-.step-text{font-size:.88rem;color:var(--text2);line-height:1.7}
-.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;margin-top:2.5rem}
-.review-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow)}
-.stars{color:var(--accent);font-size:.85rem;margin-bottom:.75rem}
-.review-text{font-size:.88rem;color:var(--text2);line-height:1.7;margin-bottom:1rem;font-style:italic}
-.reviewer{display:flex;align-items:center;gap:10px}
-.rev-avatar{width:38px;height:38px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;color:var(--primary)}
-.rev-name{font-weight:700;font-size:.88rem;color:var(--dark)}
-.rev-loc{font-size:.76rem;color:var(--text3);display:flex;align-items:center;gap:4px;margin-top:2px}
-.write-review-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.7rem 1.5rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:2rem}
+.how-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
+.step-icon{width:40px;height:40px;background:var(--primary-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;margin-bottom:.75rem}
+.step-num{font-family:'Fraunces',serif;font-size:3.5rem;font-weight:600;color:var(--primary);opacity:.12;line-height:1;margin-bottom:.3rem}
+.step-title{font-weight:700;font-size:.88rem;margin-bottom:.3rem;color:var(--dark)}
+.step-text{font-size:.82rem;color:var(--text2);line-height:1.65}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:1fr;gap:.75rem;margin-top:2rem}
+.review-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;box-shadow:var(--shadow)}
+.stars{color:var(--accent);font-size:.85rem;margin-bottom:.6rem}
+.review-text{font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:.9rem;font-style:italic}
+.reviewer{display:flex;align-items:center;gap:9px}
+.rev-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;color:var(--primary);flex-shrink:0}
+.rev-name{font-weight:700;font-size:.85rem;color:var(--dark)}
+.rev-loc{font-size:.72rem;color:var(--text3);display:flex;align-items:center;gap:3px;margin-top:2px}
+.write-review-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.65rem 1.4rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:1.5rem}
 .write-review-btn:hover{background:var(--primary);color:#fff}
-.faq-list{margin-top:2rem;display:flex;flex-direction:column;gap:.75rem}
+
+/* FAQ */
+.faq-list{margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem}
 .faq-item{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s}
 .faq-item.open{border-color:var(--primary)}
-.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--dark);gap:1rem}
-.faq-q i{color:var(--text3);transition:transform .3s;flex-shrink:0}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;font-weight:600;font-size:.88rem;color:var(--dark);gap:1rem}
+.faq-q i{color:var(--text3);transition:transform .3s;flex-shrink:0;font-size:.85rem}
 .faq-item.open .faq-q i{transform:rotate(180deg);color:var(--primary)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
-.faq-item.open .faq-a{max-height:300px;padding:0 1.4rem 1.1rem}
-.faq-a p{font-size:.88rem;color:var(--text2);line-height:1.75}
-footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:3rem}
+.faq-item.open .faq-a{max-height:300px;padding:0 1.25rem 1rem}
+.faq-a p{font-size:.85rem;color:var(--text2);line-height:1.75}
+
+/* FOOTER */
+footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top:2rem}
 .footer-inner{max-width:1080px;margin:0 auto}
-.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;margin-bottom:2.5rem}
-.footer-desc{font-size:.83rem;color:#6b8c82;margin-top:.6rem;max-width:260px;line-height:1.7}
-.footer-links h4{font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6b8c82;margin-bottom:.8rem}
-.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.footer-links a{color:#b8cfc7;text-decoration:none;font-size:.85rem;transition:color .2s}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;margin-bottom:2rem}
+.footer-brand .logo-text{color:#fff}
+.footer-desc{font-size:.8rem;color:#6b8c82;margin-top:.5rem;max-width:240px;line-height:1.7}
+.footer-links h4{font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6b8c82;margin-bottom:.7rem}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.footer-links a{color:#b8cfc7;text-decoration:none;font-size:.82rem;transition:color .2s}
 .footer-links a:hover{color:var(--primary-mid)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-copy{font-size:.78rem;color:#4a6358}
-.footer-wa{display:inline-flex;align-items:center;gap:7px;background:#25D366;color:#fff;padding:.5rem 1.1rem;border-radius:8px;text-decoration:none;font-size:.83rem;font-weight:600}
-.overlay{position:fixed;inset:0;z-index:200;background:rgba(13,31,24,0.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1rem}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.75rem;color:#4a6358}
+.footer-wa{display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:.45rem 1rem;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:600}
+
+/* MODALS */
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(13,31,24,0.65);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center;padding:0}
 .overlay.open{display:flex}
-.modal{background:#fff;border-radius:var(--radius-lg);padding:2rem;width:100%;max-width:440px;position:relative;box-shadow:0 24px 64px rgba(0,0,0,0.15);max-height:90vh;overflow-y:auto}
-.modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg);border:none;color:var(--text3);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.modal h3{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;margin-bottom:.4rem;color:var(--dark)}
-.modal-sub{font-size:.85rem;color:var(--text3);margin-bottom:1.25rem}
-.plan-summary{background:var(--bg);border-radius:10px;padding:.9rem 1.1rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center}
-.ps-label{font-size:.8rem;color:var(--text3);margin-bottom:2px}
-.ps-val{font-weight:700;font-size:.95rem;color:var(--dark)}
-.ps-price{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;color:var(--primary)}
-.form-group{margin-bottom:1rem}
-.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--text2);margin-bottom:.4rem}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:9px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;padding:.7rem 1rem;outline:none;transition:border-color .2s}
-.form-group textarea{resize:vertical;min-height:90px}
+.modal{background:#fff;border-radius:20px 20px 0 0;padding:1.75rem 1.5rem 2.5rem;width:100%;max-width:500px;position:relative;box-shadow:0 -8px 40px rgba(0,0,0,0.15);max-height:92vh;overflow-y:auto}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:100px;margin:0 auto 1.25rem}
+.modal-close{position:absolute;top:1.25rem;right:1.25rem;background:var(--bg);border:none;color:var(--text3);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem}
+.modal h3{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;margin-bottom:.35rem;color:var(--dark)}
+.modal-sub{font-size:.82rem;color:var(--text3);margin-bottom:1.2rem}
+.plan-summary{background:var(--bg);border-radius:10px;padding:.85rem 1rem;margin-bottom:1.35rem;display:flex;justify-content:space-between;align-items:center}
+.ps-label{font-size:.75rem;color:var(--text3);margin-bottom:2px}
+.ps-val{font-weight:700;font-size:.9rem;color:var(--dark)}
+.ps-price{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;color:var(--primary)}
+.form-group{margin-bottom:.9rem}
+.form-group label{display:block;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:.35rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;padding:.75rem 1rem;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.form-group textarea{resize:vertical;min-height:85px;font-size:.9rem}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary)}
-.star-input{display:flex;gap:6px;margin-top:.3rem}
-.star-input i{font-size:1.4rem;color:#d1d5db;cursor:pointer;transition:color .15s}
+.star-input{display:flex;gap:8px;margin-top:.35rem}
+.star-input i{font-size:1.6rem;color:#d1d5db;cursor:pointer;transition:color .15s}
 .star-input i.active{color:var(--accent)}
-.modal-btn{width:100%;margin-top:1.25rem;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:700;padding:.9rem;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.modal-btn{width:100%;margin-top:1.1rem;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:700;padding:.9rem;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .modal-btn:hover{background:var(--primary-dark)}
 .modal-btn:disabled{background:#9ca3af;cursor:not-allowed}
-.modal-secure{text-align:center;margin-top:.75rem;font-size:.76rem;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:5px}
-.success-box{text-align:center;padding:1rem 0}
-.success-circle{width:68px;height:68px;border-radius:50%;background:var(--primary-light);color:var(--primary);font-size:1.8rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
-.success-box h3{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:.5rem;color:var(--dark)}
-.success-box p{font-size:.88rem;color:var(--text2);line-height:1.7}
-.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:50;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;border:none;cursor:pointer;font-size:1.6rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s;text-decoration:none}
+.modal-secure{text-align:center;margin-top:.65rem;font-size:.73rem;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:4px}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:1.5rem;right:1.25rem;z-index:50;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;border:none;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s;text-decoration:none}
 .wa-float:hover{transform:scale(1.1)}
-.wa-pulse{position:absolute;top:0;right:0;width:14px;height:14px;background:#ff3b30;border-radius:50%;border:2px solid #fff}
+.wa-pulse{position:absolute;top:0;right:0;width:13px;height:13px;background:#ff3b30;border-radius:50%;border:2px solid #fff}
+
+/* DESKTOP OVERRIDES */
+@media(min-width:768px){
+  nav{padding:0 2rem;height:68px}
+  .logo-icon{width:38px;height:38px;font-size:1.1rem}
+  .logo-text{font-size:1.3rem}
+  .nav-wa{padding:.5rem 1.1rem;font-size:.85rem}
+  .nav-cta{padding:.55rem 1.4rem;font-size:.88rem}
+  .hero{padding:9rem 2rem 5rem}
+  .stats{gap:4rem;padding:2.2rem 2rem}
+  .stat-val{font-size:2.1rem}
+  .section{padding:5rem 2rem}
+  .networks-grid{grid-template-columns:repeat(4,1fr);gap:1rem}
+  .network-card{padding:1.75rem 1.5rem}
+  .net-icon{width:58px;height:58px;font-size:1.5rem}
+  .plans-section{padding:2rem 2rem 5rem}
+  .plans-grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
+  .plan-card{padding:1.5rem}
+  .plan-gb{font-size:2.2rem}
+  .plan-price{font-size:1.6rem}
+  .how-grid{grid-template-columns:repeat(4,1fr);gap:2rem}
+  .step-icon{width:44px;height:44px;font-size:1.1rem}
+  .reviews-grid{grid-template-columns:repeat(3,1fr)}
+  .overlay{align-items:center;padding:1rem}
+  .modal{border-radius:20px;padding:2rem;max-width:440px;max-height:90vh}
+  .modal-handle{display:none}
+  footer{padding:3.5rem 2rem 2rem}
+}
+
+/* LOADING SPINNER */
+.spinner{grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3)}
+.spinner i{font-size:2rem;margin-bottom:1rem;display:block}
 </style>
 </head>
 <body>
+
+<!-- NAV -->
 <nav>
   <a class="logo" href="#">
     <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
     <div class="logo-text">Tiebi's <span>Deals</span></div>
   </a>
-  <ul>
+  <ul class="nav-desktop">
     <li><a href="#networks">Networks</a></li>
     <li><a href="#plans">Plans</a></li>
     <li><a href="#how">How it works</a></li>
@@ -157,154 +214,142 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
   </ul>
   <div class="nav-actions">
     <a class="nav-wa" href="https://wa.me/233503674353" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat</a>
-    <button class="nav-cta" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-cart-shopping"></i> Buy Data</button>
+    <button class="nav-cta" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-bolt"></i> Buy Data</button>
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-blob"></div>
   <div class="hero-badge"><i class="fa-solid fa-circle-check"></i> Ghana's most affordable data bundles</div>
   <h1>Save More,<br>Stay <em>Connected.</em></h1>
-  <p class="hero-sub">Buy MTN, AirtelTigo, Telecel & Glo data at prices that actually make sense. Delivered within 15–30 minutes.</p>
+  <p class="hero-sub">Buy MTN, AirtelTigo, Telecel and Glo data at prices that make sense. Delivered within 15-30 minutes.</p>
   <div class="hero-btns">
     <a href="#plans" class="btn-primary"><i class="fa-solid fa-bolt"></i> Browse Plans</a>
     <a href="https://wa.me/233503674353" target="_blank" class="btn-ghost"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i> WhatsApp Us</a>
   </div>
   <div class="hero-trust">
     <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Secure payments</div>
-    <div class="trust-item"><i class="fa-solid fa-clock"></i> Delivered in 15–30 mins</div>
+    <div class="trust-item"><i class="fa-solid fa-clock"></i> 15-30 min delivery</div>
     <div class="trust-item"><i class="fa-solid fa-headset"></i> 24/7 support</div>
     <div class="trust-item"><i class="fa-solid fa-star"></i> 5-star rated</div>
   </div>
 </div>
 
+<!-- STATS -->
 <div class="stats">
   <div class="stat"><div class="stat-val">12K+</div><div class="stat-label">Happy customers</div></div>
-  <div class="stat"><div class="stat-val">4</div><div class="stat-label">Networks supported</div></div>
+  <div class="stat"><div class="stat-val">4</div><div class="stat-label">Networks</div></div>
   <div class="stat"><div class="stat-val">~35%</div><div class="stat-label">Average savings</div></div>
-  <div class="stat"><div class="stat-val">15–30 min</div><div class="stat-label">Delivery time</div></div>
+  <div class="stat"><div class="stat-val">15-30m</div><div class="stat-label">Delivery time</div></div>
 </div>
 
+<!-- NETWORKS -->
 <section class="section" id="networks">
   <div class="section-tag">Networks</div>
   <h2>All major networks covered</h2>
   <p class="section-sub">We deliver data directly to your phone number on all major Ghanaian networks.</p>
   <div class="networks-grid">
-    <div class="network-card" onclick="setTab('MTN')">
+    <div class="network-card" id="card-MTN" onclick="setTab('MTN')">
       <div class="net-icon mtn-c"><i class="fa-solid fa-signal" style="color:#0a0a0a"></i></div>
       <div class="network-name">MTN Ghana</div>
-      <div class="network-tag">Widest coverage · Best reliability</div>
+      <div class="network-tag">Loading...</div>
     </div>
-    <div class="network-card" onclick="setTab('AirtelTigo')">
+    <div class="network-card" id="card-AirtelTigo" onclick="setTab('AirtelTigo')">
       <div class="net-icon at-c"><i class="fa-solid fa-wifi" style="color:#fff"></i></div>
       <div class="network-name">AirtelTigo</div>
-      <div class="network-tag">Great value · Fast speeds</div>
+      <div class="network-tag">Loading...</div>
     </div>
-    <div class="network-card" onclick="setTab('Telecel')">
+    <div class="network-card" id="card-Telecel" onclick="setTab('Telecel')">
       <div class="net-icon telecel-c"><i class="fa-solid fa-tower-broadcast" style="color:#fff"></i></div>
       <div class="network-name">Telecel</div>
-      <div class="network-tag">Strong urban coverage</div>
+      <div class="network-tag">Loading...</div>
     </div>
-    <div class="network-card" onclick="setTab('Glo')">
+    <div class="network-card" id="card-Glo" onclick="setTab('Glo')">
       <div class="net-icon glo-c"><i class="fa-solid fa-globe" style="color:#fff"></i></div>
       <div class="network-name">Glo Ghana</div>
-      <div class="network-tag">Budget friendly bundles</div>
+      <div class="network-tag">Loading...</div>
     </div>
   </div>
 </section>
 
-<section id="plans" style="padding:2rem 2rem 5rem;max-width:1080px;margin:0 auto">
+<!-- PLANS -->
+<div class="plans-section" id="plans">
   <div class="plans-header">
     <div>
       <div class="section-tag">Data Plans</div>
       <h2>Pick your bundle</h2>
     </div>
     <div class="network-tabs">
-      <button class="tab active" onclick="setTab('MTN')">MTN</button>
-      <button class="tab" onclick="setTab('AirtelTigo')">AirtelTigo</button>
-      <button class="tab" onclick="setTab('Telecel')">Telecel</button>
-      <button class="tab" onclick="setTab('Glo')">Glo</button>
+      <button class="tab active" id="tab-MTN" onclick="setTab('MTN')">MTN</button>
+      <button class="tab" id="tab-AirtelTigo" onclick="setTab('AirtelTigo')">AirtelTigo</button>
+      <button class="tab" id="tab-Telecel" onclick="setTab('Telecel')">Telecel</button>
+      <button class="tab" id="tab-Glo" onclick="setTab('Glo')">Glo</button>
     </div>
   </div>
   <div class="plans-grid" id="plans-grid">
-    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3)">
-      <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;margin-bottom:1rem;display:block"></i>
-      Loading plans...
-    </div>
+    <div class="spinner"><i class="fa-solid fa-spinner fa-spin"></i>Loading plans...</div>
   </div>
-</section>
+</div>
 
+<!-- HOW IT WORKS -->
 <div class="how-bg">
   <section class="section" id="how">
     <div class="section-tag">Process</div>
     <h2>How it works</h2>
-    <p class="section-sub">No account needed. Pick, pay, and your data arrives within 15–30 minutes.</p>
+    <p class="section-sub">No account needed. Pick, pay, and your data arrives within 15-30 minutes.</p>
     <div class="how-grid">
       <div class="how-step">
         <div class="step-icon"><i class="fa-solid fa-list-check"></i></div>
         <div class="step-num">01</div>
         <div class="step-title">Choose a plan</div>
-        <div class="step-text">Browse plans by network. All prices are final — no hidden charges.</div>
+        <div class="step-text">Browse plans by network. All prices are final - no hidden charges.</div>
       </div>
       <div class="how-step">
         <div class="step-icon"><i class="fa-solid fa-mobile-screen"></i></div>
         <div class="step-num">02</div>
         <div class="step-title">Enter your number</div>
-        <div class="step-text">Provide the phone number to recharge — yours or anyone else's.</div>
+        <div class="step-text">Provide the phone number to recharge - yours or anyone else's.</div>
       </div>
       <div class="how-step">
         <div class="step-icon"><i class="fa-solid fa-lock"></i></div>
         <div class="step-num">03</div>
         <div class="step-title">Pay securely</div>
-        <div class="step-text">Pay via Mobile Money or card. Powered by Paystack — encrypted and safe.</div>
+        <div class="step-text">Pay via Mobile Money or card. Powered by Paystack - safe and encrypted.</div>
       </div>
       <div class="how-step">
         <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
         <div class="step-num">04</div>
         <div class="step-title">Data delivered</div>
-        <div class="step-text">Your bundle arrives within 15–30 minutes. Track the status live on screen.</div>
+        <div class="step-text">Your bundle arrives within 15-30 minutes. Track the status live on screen.</div>
       </div>
     </div>
   </section>
 </div>
 
+<!-- REVIEWS -->
 <section class="section" id="reviews">
   <div class="section-tag">Customer Reviews</div>
   <h2>What people say</h2>
   <p class="section-sub">Real feedback from real customers across Ghana.</p>
-  <div class="reviews-grid" id="reviews-grid">
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <div class="review-text">"I save almost GH₵20 every month. Delivery was smooth — I told all my friends about Tiebi's Deals!"</div>
-      <div class="reviewer"><div class="rev-avatar">AK</div><div><div class="rev-name">Ama Kusi</div><div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.7rem"></i> Accra</div></div></div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <div class="review-text">"I buy data for my whole family here. Prices are genuinely the cheapest I've found in Ghana."</div>
-      <div class="reviewer"><div class="rev-avatar">KB</div><div><div class="rev-name">Kweku Boateng</div><div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.7rem"></i> Kumasi</div></div></div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <div class="review-text">"Fast, reliable and affordable. 4 months in and not a single issue. Tiebi is the best!"</div>
-      <div class="reviewer"><div class="rev-avatar">SA</div><div><div class="rev-name">Serwaa Asante</div><div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.7rem"></i> Takoradi</div></div></div>
-    </div>
-  </div>
+  <div class="reviews-grid" id="reviews-grid"></div>
   <button class="write-review-btn" onclick="openReviewModal()"><i class="fa-solid fa-pen-to-square"></i> Write a Review</button>
 </section>
 
+<!-- FAQ -->
 <div class="how-bg">
   <section class="section" id="faq">
     <div class="section-tag">FAQ</div>
     <h2>Frequently asked questions</h2>
-    <p class="section-sub">Got questions? We've got answers. Still unsure? WhatsApp us directly.</p>
+    <p class="section-sub">Got questions? We have answers. Still unsure? WhatsApp us directly.</p>
     <div class="faq-list">
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">How long does data delivery take? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>Data is typically delivered within 15–30 minutes of payment. You can track your order status live on screen after paying.</p></div>
+        <div class="faq-a"><p>Data is typically delivered within 15-30 minutes of payment. You can track your order status live on screen after paying.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Can I buy data for someone else's number? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>Yes! You can top up any phone number on any supported network — yours, a family member's, or a friend's.</p></div>
+        <div class="faq-a"><p>Yes! You can top up any phone number on any supported network - yours, a family member's, or a friend's.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <i class="fa-solid fa-chevron-down"></i></div>
@@ -324,17 +369,18 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">How do I reach customer support? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>WhatsApp us at 0503674353. We're available 7 days a week and respond within minutes.</p></div>
+        <div class="faq-a"><p>WhatsApp us at 0503674353. We are available 7 days a week and respond within minutes.</p></div>
       </div>
     </div>
   </section>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div style="display:flex;align-items:center;gap:10px">
+        <div style="display:flex;align-items:center;gap:9px">
           <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
           <div class="logo-text">Tiebi's <span>Deals</span></div>
         </div>
@@ -358,26 +404,31 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2025 Tiebi's Deals. All rights reserved.</div>
-      <a class="footer-wa" href="https://wa.me/233503674353" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+      <div class="footer-copy">2025 Tiebi's Deals. All rights reserved.</div>
+      <a class="footer-wa" href="https://wa.me/233503674353" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
     </div>
   </div>
 </footer>
 
+<!-- WHATSAPP FLOAT -->
 <a class="wa-float" href="https://wa.me/233503674353" target="_blank">
   <i class="fa-brands fa-whatsapp"></i>
   <div class="wa-pulse"></div>
 </a>
 
+<!-- BUY MODAL -->
 <div class="overlay" id="buy-modal">
   <div class="modal">
+    <div class="modal-handle"></div>
     <button class="modal-close" onclick="closeModal('buy-modal')"><i class="fa-solid fa-xmark"></i></button>
     <div id="buy-body"></div>
   </div>
 </div>
 
+<!-- REVIEW MODAL -->
 <div class="overlay" id="review-modal">
   <div class="modal">
+    <div class="modal-handle"></div>
     <button class="modal-close" onclick="closeModal('review-modal')"><i class="fa-solid fa-xmark"></i></button>
     <div id="review-body">
       <h3>Write a Review</h3>
@@ -406,44 +457,98 @@ let allPlans = {};
 let currentNet = 'MTN';
 let selectedStarsVal = 5;
 
+const NET_TAGS = {
+  MTN: 'Widest coverage · Best reliability',
+  AirtelTigo: 'Great value · Fast speeds',
+  Telecel: 'Strong urban coverage',
+  Glo: 'Budget friendly bundles'
+};
+
+const DEFAULT_REVIEWS = [
+  {name:'Ama Kusi',loc:'Accra',stars:5,text:'I save almost GH20 every month. Delivery was smooth - I told all my friends about Tiebi Deals!'},
+  {name:'Kweku Boateng',loc:'Kumasi',stars:5,text:'I buy data for my whole family here. Prices are genuinely the cheapest I have found in Ghana.'},
+  {name:'Serwaa Asante',loc:'Takoradi',stars:5,text:'Fast, reliable and affordable. 4 months in and not a single issue. Tiebi is the best!'}
+];
+
+function loadReviews() {
+  try {
+    const saved = localStorage.getItem('tiebi_reviews');
+    renderReviews(saved ? JSON.parse(saved) : DEFAULT_REVIEWS);
+  } catch(e) {
+    renderReviews(DEFAULT_REVIEWS);
+  }
+}
+
+function renderReviews(reviews) {
+  document.getElementById('reviews-grid').innerHTML = reviews.map(r => {
+    const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+    const initials = r.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    return `<div class="review-card">
+      <div class="stars">${stars}</div>
+      <div class="review-text">"${r.text}"</div>
+      <div class="reviewer">
+        <div class="rev-avatar">${initials}</div>
+        <div>
+          <div class="rev-name">${r.name}</div>
+          <div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.65rem"></i> ${r.loc}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function saveReview(review) {
+  try {
+    const saved = localStorage.getItem('tiebi_reviews');
+    const reviews = saved ? JSON.parse(saved) : [...DEFAULT_REVIEWS];
+    reviews.unshift(review);
+    localStorage.setItem('tiebi_reviews', JSON.stringify(reviews));
+    renderReviews(reviews);
+  } catch(e) {
+    renderReviews([review, ...DEFAULT_REVIEWS]);
+  }
+}
+
 async function loadPlans() {
   try {
     const res = await fetch(API + '/plans');
     const data = await res.json();
     if (!data.success || !data.plans) throw new Error('No plans');
     allPlans = data.plans;
-    const firstNet = Object.keys(allPlans)[0];
-    if (firstNet) {
-      currentNet = firstNet;
-      document.querySelectorAll('.tab').forEach(t => {
-        const net = t.textContent.trim();
-        if (!allPlans[net] || !allPlans[net].length) {
-          t.style.display = 'none';
-        } else {
-          t.style.display = 'block';
-          t.classList.toggle('active', net === firstNet);
-        }
-      });
-    document.querySelectorAll('.network-card').forEach(card => {
-        const name = card.querySelector('.network-name').textContent.trim();
-        if (!allPlans[name] || !allPlans[name].length) {
-          card.style.opacity = '0.4';
-          card.style.cursor = 'not-allowed';
-          card.querySelector('.network-tag').textContent = 'Coming soon';
-          card.onclick = null;
-        } else {
+    const available = Object.keys(allPlans).filter(n => allPlans[n] && allPlans[n].length > 0);
+    if (available.length === 0) throw new Error('No plans available');
+    currentNet = available[0];
+
+    ['MTN','AirtelTigo','Telecel','Glo'].forEach(net => {
+      const tab = document.getElementById('tab-' + net);
+      const card = document.getElementById('card-' + net);
+      const isAvail = available.includes(net);
+      if (tab) {
+        tab.style.display = isAvail ? 'inline-block' : 'none';
+        tab.classList.toggle('active', net === currentNet);
+      }
+      if (card) {
+        const tag = card.querySelector('.network-tag');
+        if (isAvail) {
           card.style.opacity = '1';
           card.style.cursor = 'pointer';
-          card.querySelector('.network-tag').textContent = name === 'MTN' ? 'Widest coverage · Best reliability' : 'Available now';
-          card.onclick = function(){ setTab(name); };
+          card.style.pointerEvents = 'auto';
+          if (tag) tag.textContent = NET_TAGS[net] || 'Available now';
+          card.onclick = (function(n){ return function(){ setTab(n); }; })(net);
+        } else {
+          card.style.opacity = '0.4';
+          card.style.cursor = 'not-allowed';
+          card.style.pointerEvents = 'none';
+          if (tag) tag.textContent = 'Coming soon';
+          card.onclick = null;
         }
-      });
-    }
+      }
+    });
     renderPlans();
-  } catch (err) {
+  } catch(err) {
     document.getElementById('plans-grid').innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)">
-        <i class="fa-solid fa-circle-exclamation" style="font-size:2rem;color:#f59e0b;margin-bottom:.5rem;display:block"></i>
+      <div class="spinner">
+        <i class="fa-solid fa-circle-exclamation" style="color:#f59e0b"></i>
         Could not load plans. <a href="#" onclick="loadPlans()" style="color:var(--primary)">Tap to retry</a>
       </div>`;
   }
@@ -452,7 +557,10 @@ async function loadPlans() {
 function setTab(net) {
   if (!allPlans[net] || !allPlans[net].length) return;
   currentNet = net;
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.textContent.trim() === net));
+  ['MTN','AirtelTigo','Telecel','Glo'].forEach(n => {
+    const t = document.getElementById('tab-' + n);
+    if (t) t.classList.toggle('active', n === net);
+  });
   renderPlans();
   document.getElementById('plans').scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -461,23 +569,20 @@ function renderPlans() {
   const ps = allPlans[currentNet] || [];
   if (!ps.length) {
     document.getElementById('plans-grid').innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)">
-        No plans available for ${currentNet} right now.
-      </div>`;
+      <div class="spinner">No plans for ${currentNet} right now.</div>`;
     return;
   }
   document.getElementById('plans-grid').innerHTML = ps.map(p => {
-    const vid = p.id.replace(/'/g, '');
-    const vnet = p.network.replace(/'/g, '');
-    const vval = p.validity.replace(/'/g,'').substring(0,40);
-    return `
-    <div class="plan-card ${p.popular ? 'popular' : ''}"
+    const vid = String(p.id).replace(/['"]/g,'');
+    const vnet = String(p.network).replace(/['"]/g,'');
+    const vval = String(p.validity).replace(/['"]/g,'').substring(0,40);
+    return `<div class="plan-card ${p.popular?'popular':''}"
       onclick="openBuy('${vid}','${vnet}',${p.gb},${p.volumeMB},'${vval}',${p.price})">
-      ${p.popular ? '<div class="pop-badge">⚡ Most Popular</div>' : ''}
+      ${p.popular?'<div class="pop-badge">Most Popular</div>':''}
       <div class="plan-gb">${p.gb} <span>GB</span></div>
-      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.72rem"></i> ${vval}</div>
-      <div class="plan-price">GH₵ ${p.price.toFixed(2)}</div>
-      <div class="plan-was">Was GH₵ ${p.was.toFixed(2)}</div>
+      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.65rem"></i> ${vval}</div>
+      <div class="plan-price">GH&#8373; ${p.price.toFixed(2)}</div>
+      <div class="plan-was">Was GH&#8373; ${p.was.toFixed(2)}</div>
       <div class="plan-save">${p.save}</div>
       <button class="plan-btn"><i class="fa-solid fa-cart-plus"></i> Buy Now</button>
     </div>`;
@@ -487,10 +592,10 @@ function renderPlans() {
 function openBuy(planId, network, gb, volumeMB, validity, price) {
   document.getElementById('buy-body').innerHTML = `
     <h3>Complete Purchase</h3>
-    <p class="modal-sub">Fill in your details to receive your data bundle</p>
+    <p class="modal-sub">Fill in your details to receive your bundle</p>
     <div class="plan-summary">
-      <div><div class="ps-label">Plan</div><div class="ps-val">${network} · ${gb}GB</div></div>
-      <div style="text-align:right"><div class="ps-label">Total</div><div class="ps-price">GH₵ ${parseFloat(price).toFixed(2)}</div></div>
+      <div><div class="ps-label">Plan</div><div class="ps-val">${network} ${gb}GB</div></div>
+      <div style="text-align:right"><div class="ps-label">Total</div><div class="ps-price">GH&#8373; ${parseFloat(price).toFixed(2)}</div></div>
     </div>
     <div class="form-group">
       <label><i class="fa-solid fa-mobile-screen" style="color:var(--primary)"></i> Phone number to top up</label>
@@ -502,7 +607,7 @@ function openBuy(planId, network, gb, volumeMB, validity, price) {
     </div>
     <button class="modal-btn" id="pay-btn"
       onclick="initiatePayment('${planId}','${network}',${gb},${volumeMB},'${validity}',${price})">
-      <i class="fa-solid fa-lock"></i> Pay GH₵ ${parseFloat(price).toFixed(2)} Securely
+      <i class="fa-solid fa-lock"></i> Pay GH&#8373; ${parseFloat(price).toFixed(2)} Securely
     </button>
     <div class="modal-secure"><i class="fa-solid fa-shield-halved"></i> Protected by Paystack · SSL encrypted</div>
   `;
@@ -521,19 +626,15 @@ async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
   try {
     const payload = {
-      planId:   String(planId),
-      network:  String(network),
-      gb:       Number(gb),
-      volumeMB: Number(volumeMB),
-      validity: String(validity),
-      price:    Number(price),
-      phone:    String(phone),
-      email:    email || null
+      planId:String(planId), network:String(network),
+      gb:Number(gb), volumeMB:Number(volumeMB),
+      validity:String(validity), price:Number(price),
+      phone:String(phone), email:email||null
     };
-    const res = await fetch(API + '/initiate-payment', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
+    const res = await fetch(API+'/initiate-payment',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
     });
     const data = await res.json();
     if (!data.success) throw new Error(data.message);
@@ -542,7 +643,7 @@ async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
     localStorage.setItem('td_network', network);
     localStorage.setItem('td_gb', gb);
     window.location.href = data.paymentUrl;
-  } catch (err) {
+  } catch(err) {
     btn.disabled = false;
     btn.innerHTML = '<i class="fa-solid fa-lock"></i> Pay Securely';
     alert('Payment could not be initiated: ' + err.message);
@@ -551,17 +652,21 @@ async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
 
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.overlay').forEach(o => {
-  o.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+  o.addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
 });
+
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
 }
+
 function initStars() {
+  selectedStarsVal = 5;
   const stars = document.querySelectorAll('#star-input i');
   stars.forEach(s => {
+    s.classList.toggle('active', +s.dataset.val <= selectedStarsVal);
     s.addEventListener('click', () => {
       selectedStarsVal = +s.dataset.val;
       stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal));
@@ -569,36 +674,27 @@ function initStars() {
     s.addEventListener('mouseenter', () => stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= +s.dataset.val)));
     s.addEventListener('mouseleave', () => stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal)));
   });
-  stars.forEach((s,i) => { if (i < 5) s.classList.add('active'); });
 }
+
 function openReviewModal() {
-  selectedStarsVal = 5;
   document.getElementById('review-modal').classList.add('open');
   setTimeout(initStars, 50);
 }
+
 function submitReview() {
   const name = document.getElementById('rev-name').value.trim();
   const loc  = document.getElementById('rev-loc').value.trim();
   const text = document.getElementById('rev-text').value.trim();
   if (!name || !text) { alert('Please fill in your name and review.'); return; }
-  const stars = '★'.repeat(selectedStarsVal) + '☆'.repeat(5 - selectedStarsVal);
-  const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
-  const card = document.createElement('div');
-  card.className = 'review-card';
-  card.innerHTML = `
-    <div class="stars">${stars}</div>
-    <div class="review-text">"${text}"</div>
-    <div class="reviewer">
-      <div class="rev-avatar">${initials}</div>
-      <div><div class="rev-name">${name}</div><div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.7rem"></i> ${loc||'Ghana'}</div></div>
-    </div>`;
-  document.getElementById('reviews-grid').prepend(card);
+  saveReview({name, loc:loc||'Ghana', stars:selectedStarsVal, text});
   closeModal('review-modal');
   document.getElementById('rev-name').value = '';
   document.getElementById('rev-loc').value  = '';
   document.getElementById('rev-text').value = '';
+  alert('Thank you for your review!');
 }
 
+loadReviews();
 loadPlans();
 </script>
 </body>
