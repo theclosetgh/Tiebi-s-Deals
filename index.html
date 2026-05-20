@@ -133,19 +133,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
 .modal-btn:hover{background:var(--primary-dark)}
 .modal-btn:disabled{background:#9ca3af;cursor:not-allowed}
 .modal-secure{text-align:center;margin-top:.75rem;font-size:.76rem;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:5px}
-/* ORDER TRACKER */
-.tracker{background:var(--bg);border-radius:12px;padding:1.25rem;margin:1rem 0}
-.tracker-title{font-size:.82rem;font-weight:700;color:var(--text2);margin-bottom:1rem;display:flex;align-items:center;gap:6px}
-.tracker-steps{display:flex;flex-direction:column;gap:.6rem}
-.t-step{display:flex;align-items:center;gap:10px;font-size:.83rem;color:var(--text3)}
-.t-step.done{color:var(--primary-dark)}
-.t-step.active{color:var(--dark);font-weight:600}
-.t-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0;background:#fff}
-.t-step.done .t-dot{background:var(--primary);border-color:var(--primary);color:#fff}
-.t-step.active .t-dot{border-color:var(--primary);background:var(--primary-light);color:var(--primary)}
-.countdown{text-align:center;margin:.75rem 0;font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;color:var(--primary)}
-.countdown-label{text-align:center;font-size:.78rem;color:var(--text3);margin-top:-.5rem;margin-bottom:.75rem}
-.tracker-warn{background:#fff8e6;border:1px solid #fcd34d;border-radius:8px;padding:.7rem 1rem;font-size:.8rem;color:#92400e;margin-top:.75rem;display:none;align-items:center;gap:6px}
 .success-box{text-align:center;padding:1rem 0}
 .success-circle{width:68px;height:68px;border-radius:50%;background:var(--primary-light);color:var(--primary);font-size:1.8rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
 .success-box h3{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:.5rem;color:var(--dark)}
@@ -156,7 +143,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
 </style>
 </head>
 <body>
-
 <nav>
   <a class="logo" href="#">
     <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
@@ -202,7 +188,7 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
 <section class="section" id="networks">
   <div class="section-tag">Networks</div>
   <h2>All major networks covered</h2>
-  <p class="section-sub">We deliver data directly to your phone number on all four major Ghanaian networks.</p>
+  <p class="section-sub">We deliver data directly to your phone number on all major Ghanaian networks.</p>
   <div class="networks-grid">
     <div class="network-card" onclick="setTab('MTN')">
       <div class="net-icon mtn-c"><i class="fa-solid fa-signal" style="color:#0a0a0a"></i></div>
@@ -242,8 +228,8 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
   </div>
   <div class="plans-grid" id="plans-grid">
     <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3)">
-      <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;margin-bottom:1rem"></i>
-      <p>Loading plans...</p>
+      <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;margin-bottom:1rem;display:block"></i>
+      Loading plans...
     </div>
   </div>
 </section>
@@ -314,31 +300,31 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
     <div class="faq-list">
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">How long does data delivery take? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>Data is typically delivered within 15–30 minutes of payment. This depends on the network load at the time of your order. You can track your order status live on screen after paying.</p></div>
+        <div class="faq-a"><p>Data is typically delivered within 15–30 minutes of payment. You can track your order status live on screen after paying.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Can I buy data for someone else's number? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>Yes! You can top up any phone number on any supported network — yours, a family member's, or a friend's. Just enter their number at checkout.</p></div>
+        <div class="faq-a"><p>Yes! You can top up any phone number on any supported network — yours, a family member's, or a friend's.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>We accept MTN Mobile Money, AirtelTigo Money, Telecel Cash, and debit/credit cards. All payments are processed securely via Paystack.</p></div>
+        <div class="faq-a"><p>We accept MTN Mobile Money, AirtelTigo Money, Telecel Cash, and debit/credit cards via Paystack.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">What if I entered the wrong number? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>Please double-check the number before paying. If you made an error, contact us immediately on WhatsApp at 0503674353 and we will do our best to help you.</p></div>
+        <div class="faq-a"><p>Contact us immediately on WhatsApp at 0503674353 and we will do our best to help you.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Why are your prices cheaper than the network directly? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>We buy data in bulk at wholesale rates and pass the savings on to you. This is completely legal and the bundles are 100% genuine network data.</p></div>
+        <div class="faq-a"><p>We buy data in bulk at wholesale rates and pass the savings on to you. 100% genuine network data.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Is my payment information safe? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>Absolutely. We do not store any card or MoMo details. All transactions are handled by Paystack, a PCI-DSS compliant processor trusted across Africa.</p></div>
+        <div class="faq-a"><p>Absolutely. All transactions are handled by Paystack, a PCI-DSS compliant processor trusted across Africa.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">How do I reach customer support? <i class="fa-solid fa-chevron-down"></i></div>
-        <div class="faq-a"><p>The fastest way is WhatsApp — message us at 0503674353. We're available 7 days a week and typically respond within minutes.</p></div>
+        <div class="faq-a"><p>WhatsApp us at 0503674353. We're available 7 days a week and respond within minutes.</p></div>
       </div>
     </div>
   </section>
@@ -368,7 +354,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
         <h4>Contact</h4>
         <ul>
           <li><a href="https://wa.me/233503674353" target="_blank"><i class="fa-brands fa-whatsapp"></i> 0503674353</a></li>
-          <li><a href="#"><i class="fa-solid fa-envelope"></i> support@tiebideals.com</a></li>
         </ul>
       </div>
     </div>
@@ -384,7 +369,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
   <div class="wa-pulse"></div>
 </a>
 
-<!-- BUY MODAL -->
 <div class="overlay" id="buy-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('buy-modal')"><i class="fa-solid fa-xmark"></i></button>
@@ -392,7 +376,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
   </div>
 </div>
 
-<!-- REVIEW MODAL -->
 <div class="overlay" id="review-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('review-modal')"><i class="fa-solid fa-xmark"></i></button>
@@ -419,51 +402,37 @@ footer{background:var(--dark);color:#b8cfc7;padding:3.5rem 2rem 2rem;margin-top:
 
 <script>
 const API = 'https://mqqgrcyqsifjkeverbgb.supabase.co/functions/v1/api';
-
 let allPlans = {};
 let currentNet = 'MTN';
 let selectedStarsVal = 5;
 
 async function loadPlans() {
-  document.getElementById('plans-grid').innerHTML = `
-    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3)">
-      <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;margin-bottom:1rem;display:block"></i>
-      Loading plans...
-    </div>`;
   try {
-    const res = await fetch(`${API}/plans`);
+    const res = await fetch(API + '/plans');
     const data = await res.json();
-    if (!data.success) throw new Error('API error');
+    if (!data.success || !data.plans) throw new Error('No plans');
     allPlans = data.plans;
-
-    // Hide tabs with no plans
-    document.querySelectorAll('.tab').forEach(tab => {
-      const net = tab.textContent.trim();
-      if (!allPlans[net] || allPlans[net].length === 0) {
-        tab.style.display = 'none';
-      }
-    });
-
-    // Mark empty network cards as coming soon
-    document.querySelectorAll('.network-card').forEach(card => {
-      const name = card.querySelector('.network-name').textContent.trim();
-      if (!allPlans[name] || allPlans[name].length === 0) {
-        card.style.opacity = '0.4';
-        card.style.cursor = 'not-allowed';
-        card.querySelector('.network-tag').textContent = 'Coming soon';
-        card.onclick = null;
-      }
-    });
-
-    // Set first available network
     const firstNet = Object.keys(allPlans)[0];
     if (firstNet) {
       currentNet = firstNet;
       document.querySelectorAll('.tab').forEach(t => {
-        t.classList.toggle('active', t.textContent.trim() === firstNet);
+        const net = t.textContent.trim();
+        if (!allPlans[net] || !allPlans[net].length) {
+          t.style.display = 'none';
+        } else {
+          t.classList.toggle('active', net === firstNet);
+        }
+      });
+      document.querySelectorAll('.network-card').forEach(card => {
+        const name = card.querySelector('.network-name').textContent.trim();
+        if (!allPlans[name] || !allPlans[name].length) {
+          card.style.opacity = '0.4';
+          card.style.cursor = 'not-allowed';
+          card.querySelector('.network-tag').textContent = 'Coming soon';
+          card.onclick = null;
+        }
       });
     }
-
     renderPlans();
   } catch (err) {
     document.getElementById('plans-grid').innerHTML = `
@@ -475,11 +444,11 @@ async function loadPlans() {
 }
 
 function setTab(net) {
-  if (!allPlans[net] || allPlans[net].length === 0) return;
+  if (!allPlans[net] || !allPlans[net].length) return;
   currentNet = net;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.textContent.trim() === net));
   renderPlans();
-  document.getElementById('plans').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('plans').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function renderPlans() {
@@ -491,18 +460,22 @@ function renderPlans() {
       </div>`;
     return;
   }
-  document.getElementById('plans-grid').innerHTML = ps.map(p => `
+  document.getElementById('plans-grid').innerHTML = ps.map(p => {
+    const vid = p.id.replace(/'/g, '');
+    const vnet = p.network.replace(/'/g, '');
+    const vval = p.validity.replace(/'/g,'').substring(0,40);
+    return `
     <div class="plan-card ${p.popular ? 'popular' : ''}"
-         onclick="openBuy('${p.id}','${p.network}',${p.gb},${p.volumeMB},'${p.validity.replace(/'/g,"\\'")}',${p.price})">
+      onclick="openBuy('${vid}','${vnet}',${p.gb},${p.volumeMB},'${vval}',${p.price})">
       ${p.popular ? '<div class="pop-badge">⚡ Most Popular</div>' : ''}
       <div class="plan-gb">${p.gb} <span>GB</span></div>
-      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.72rem"></i> ${p.validity.substring(0,40)}</div>
+      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.72rem"></i> ${vval}</div>
       <div class="plan-price">GH₵ ${p.price.toFixed(2)}</div>
       <div class="plan-was">Was GH₵ ${p.was.toFixed(2)}</div>
       <div class="plan-save">${p.save}</div>
       <button class="plan-btn"><i class="fa-solid fa-cart-plus"></i> Buy Now</button>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function openBuy(planId, network, gb, volumeMB, validity, price) {
@@ -510,14 +483,8 @@ function openBuy(planId, network, gb, volumeMB, validity, price) {
     <h3>Complete Purchase</h3>
     <p class="modal-sub">Fill in your details to receive your data bundle</p>
     <div class="plan-summary">
-      <div>
-        <div class="ps-label">Plan</div>
-        <div class="ps-val">${network} · ${gb}GB</div>
-      </div>
-      <div style="text-align:right">
-        <div class="ps-label">Total</div>
-        <div class="ps-price">GH₵ ${parseFloat(price).toFixed(2)}</div>
-      </div>
+      <div><div class="ps-label">Plan</div><div class="ps-val">${network} · ${gb}GB</div></div>
+      <div style="text-align:right"><div class="ps-label">Total</div><div class="ps-price">GH₵ ${parseFloat(price).toFixed(2)}</div></div>
     </div>
     <div class="form-group">
       <label><i class="fa-solid fa-mobile-screen" style="color:var(--primary)"></i> Phone number to top up</label>
@@ -528,12 +495,10 @@ function openBuy(planId, network, gb, volumeMB, validity, price) {
       <input type="email" id="em" placeholder="e.g. you@gmail.com">
     </div>
     <button class="modal-btn" id="pay-btn"
-      onclick="initiatePayment('${planId}','${network}',${gb},${volumeMB},'${validity.replace(/'/g,"\\'")}',${price})">
+      onclick="initiatePayment('${planId}','${network}',${gb},${volumeMB},'${validity}',${price})">
       <i class="fa-solid fa-lock"></i> Pay GH₵ ${parseFloat(price).toFixed(2)} Securely
     </button>
-    <div class="modal-secure">
-      <i class="fa-solid fa-shield-halved"></i> Protected by Paystack · SSL encrypted
-    </div>
+    <div class="modal-secure"><i class="fa-solid fa-shield-halved"></i> Protected by Paystack · SSL encrypted</div>
   `;
   document.getElementById('buy-modal').classList.add('open');
 }
@@ -541,16 +506,13 @@ function openBuy(planId, network, gb, volumeMB, validity, price) {
 async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
   const phone = document.getElementById('ph').value.trim();
   const email = document.getElementById('em').value.trim();
-
-  if (!phone || phone.replace(/\s/g, '').length < 10) {
+  if (!phone || phone.replace(/\s/g,'').length < 10) {
     alert('Please enter a valid phone number.');
     return;
   }
-
   const btn = document.getElementById('pay-btn');
   btn.disabled = true;
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
-
   try {
     const payload = {
       planId:   String(planId),
@@ -562,21 +524,17 @@ async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
       phone:    String(phone),
       email:    email || null
     };
-
-    const res = await fetch(`${API}/initiate-payment`, {
+    const res = await fetch(API + '/initiate-payment', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type':'application/json'},
       body: JSON.stringify(payload)
     });
-
     const data = await res.json();
     if (!data.success) throw new Error(data.message);
-
     localStorage.setItem('td_order_id', data.orderId);
     localStorage.setItem('td_phone', phone);
     localStorage.setItem('td_network', network);
     localStorage.setItem('td_gb', gb);
-
     window.location.href = data.paymentUrl;
   } catch (err) {
     btn.disabled = false;
@@ -585,23 +543,16 @@ async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
   }
 }
 
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-}
-
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.overlay').forEach(o => {
-  o.addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('open');
-  });
+  o.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
 });
-
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
 }
-
 function initStars() {
   const stars = document.querySelectorAll('#star-input i');
   stars.forEach(s => {
@@ -609,40 +560,31 @@ function initStars() {
       selectedStarsVal = +s.dataset.val;
       stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal));
     });
-    s.addEventListener('mouseenter', () => {
-      stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= +s.dataset.val));
-    });
-    s.addEventListener('mouseleave', () => {
-      stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal));
-    });
+    s.addEventListener('mouseenter', () => stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= +s.dataset.val)));
+    s.addEventListener('mouseleave', () => stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal)));
   });
-  stars.forEach((s, i) => { if (i < 5) s.classList.add('active'); });
+  stars.forEach((s,i) => { if (i < 5) s.classList.add('active'); });
 }
-
 function openReviewModal() {
   selectedStarsVal = 5;
   document.getElementById('review-modal').classList.add('open');
   setTimeout(initStars, 50);
 }
-
 function submitReview() {
   const name = document.getElementById('rev-name').value.trim();
   const loc  = document.getElementById('rev-loc').value.trim();
   const text = document.getElementById('rev-text').value.trim();
   if (!name || !text) { alert('Please fill in your name and review.'); return; }
-  const stars    = '★'.repeat(selectedStarsVal) + '☆'.repeat(5 - selectedStarsVal);
-  const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
-  const card     = document.createElement('div');
+  const stars = '★'.repeat(selectedStarsVal) + '☆'.repeat(5 - selectedStarsVal);
+  const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+  const card = document.createElement('div');
   card.className = 'review-card';
   card.innerHTML = `
     <div class="stars">${stars}</div>
     <div class="review-text">"${text}"</div>
     <div class="reviewer">
       <div class="rev-avatar">${initials}</div>
-      <div>
-        <div class="rev-name">${name}</div>
-        <div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.7rem"></i> ${loc || 'Ghana'}</div>
-      </div>
+      <div><div class="rev-name">${name}</div><div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.7rem"></i> ${loc||'Ghana'}</div></div>
     </div>`;
   document.getElementById('reviews-grid').prepend(card);
   closeModal('review-modal');
