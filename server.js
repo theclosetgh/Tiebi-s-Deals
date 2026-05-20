@@ -21,8 +21,11 @@ const supabase = createClient(
 const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
 const PAYSTACK_PUBLIC_KEY = process.env.PAYSTACK_PUBLIC_KEY;
 const REMADATA_API_KEY    = process.env.REMADATA_API_KEY;
-const REMADATA_BASE_URL   = process.env.REMADATA_BASE_URL;
+const REMADATA_BASE_URL   = 'https://remadata.com/api';
 const APP_URL             = process.env.APP_URL;
+
+// ── Your markup percentage (how much profit you add on top)
+const MARKUP = 1.30; // 30% markup — change this to adjust your profit
 
 // ── Health check
 app.get('/health', (req, res) => {
@@ -34,66 +37,77 @@ app.get('/config', (req, res) => {
   res.json({ paystackPublicKey: PAYSTACK_PUBLIC_KEY });
 });
 
-// ── Get plans
+// ── Get all plans from Remadata
 app.get('/plans', async (req, res) => {
   try {
-    // REPLACE THIS with real Remadata API call when you have the docs:
-    // const r = await fetch(`${REMADATA_BASE_URL}/plans`, {
-    //   headers: { Authorization: `Token ${REMADATA_API_KEY}` }
-    // });
-    // const data = await r.json();
-    // return res.json({ success: true, plans: data });
+    const response = await fetch(`${REMADATA_BASE_URL}/bundles`, {
+      headers: { 'X-API-KEY': REMADATA_API_KEY }
+    });
+    const data = await response.json();
 
-    const mockPlans = {
-      MTN: [
-        { id: 'mtn-1gb-1d',   network: 'MTN', gb: 1,  validity: '1 Day',   price: 3.50,  was: 5.00  },
-        { id: 'mtn-2gb-3d',   network: 'MTN', gb: 2,  validity: '3 Days',  price: 6.00,  was: 9.00  },
-        { id: 'mtn-5gb-7d',   network: 'MTN', gb: 5,  validity: '7 Days',  price: 13.00, was: 19.00, popular: true },
-        { id: 'mtn-10gb-30d', network: 'MTN', gb: 10, validity: '30 Days', price: 22.00, was: 32.00 },
-        { id: 'mtn-15gb-30d', network: 'MTN', gb: 15, validity: '30 Days', price: 30.00, was: 45.00 },
-        { id: 'mtn-30gb-30d', network: 'MTN', gb: 30, validity: '30 Days', price: 55.00, was: 80.00 },
-      ],
-      AirtelTigo: [
-        { id: 'at-1gb-1d',    network: 'AirtelTigo', gb: 1,  validity: '1 Day',   price: 3.00,  was: 4.50  },
-        { id: 'at-3gb-3d',    network: 'AirtelTigo', gb: 3,  validity: '3 Days',  price: 7.00,  was: 10.00 },
-        { id: 'at-5gb-7d',    network: 'AirtelTigo', gb: 5,  validity: '7 Days',  price: 12.00, was: 18.00, popular: true },
-        { id: 'at-10gb-30d',  network: 'AirtelTigo', gb: 10, validity: '30 Days', price: 21.00, was: 30.00 },
-        { id: 'at-20gb-30d',  network: 'AirtelTigo', gb: 20, validity: '30 Days', price: 38.00, was: 56.00 },
-      ],
-      Telecel: [
-        { id: 'tc-1gb-1d',    network: 'Telecel', gb: 1,  validity: '1 Day',   price: 3.50,  was: 5.00  },
-        { id: 'tc-2gb-3d',    network: 'Telecel', gb: 2,  validity: '3 Days',  price: 6.50,  was: 9.50  },
-        { id: 'tc-5gb-7d',    network: 'Telecel', gb: 5,  validity: '7 Days',  price: 13.00, was: 19.00, popular: true },
-        { id: 'tc-10gb-30d',  network: 'Telecel', gb: 10, validity: '30 Days', price: 23.00, was: 33.00 },
-        { id: 'tc-25gb-30d',  network: 'Telecel', gb: 25, validity: '30 Days', price: 50.00, was: 73.00 },
-      ],
-      Glo: [
-        { id: 'glo-1gb-1d',   network: 'Glo', gb: 1,  validity: '1 Day',   price: 2.80,  was: 4.00  },
-        { id: 'glo-3gb-3d',   network: 'Glo', gb: 3,  validity: '3 Days',  price: 6.50,  was: 9.50, popular: true },
-        { id: 'glo-5gb-7d',   network: 'Glo', gb: 5,  validity: '7 Days',  price: 11.00, was: 16.00 },
-        { id: 'glo-10gb-30d', network: 'Glo', gb: 10, validity: '30 Days', price: 20.00, was: 29.00 },
-      ],
+    if (data.status !== 'success') {
+      throw new Error('Failed to fetch bundles from Remadata');
+    }
+
+    // Group by network and add your markup price
+    const grouped = {};
+    const networkMap = {
+      mtn:       'MTN',
+      airteltigo:'AirtelTigo',
+      telecel:   'Telecel',
+      glo:       'Glo'
     };
-    res.json({ success: true, plans: mockPlans });
+
+    data.data.forEach((bundle, index) => {
+      const netKey  = bundle.network.toLowerCase();
+      const netName = networkMap[netKey] || bundle.network.toUpperCase();
+
+      if (!grouped[netName]) grouped[netName] = [];
+
+      const costPrice  = parseFloat(bundle.price);
+      const sellPrice  = parseFloat((costPrice * MARKUP).toFixed(2));
+      const originalPrice = parseFloat((sellPrice * 1.32).toFixed(2)); // shown as "was" price
+      const savePct    = Math.round((1 - sellPrice / originalPrice) * 100);
+      const gbVal      = bundle.volumeInMB / 1024;
+
+      grouped[netName].push({
+        id:       `${netKey}-${bundle.volumeInMB}-${index}`,
+        network:  netName,
+        name:     bundle.name,
+        gb:       gbVal % 1 === 0 ? gbVal : parseFloat(gbVal.toFixed(1)),
+        volumeMB: bundle.volumeInMB,
+        validity: bundle.description || '30 Days',
+        price:    sellPrice,
+        was:      originalPrice,
+        save:     `Save ${savePct}%`,
+        popular:  bundle.volumeInMB === 5120 // mark 5GB as popular
+      });
+    });
+
+    res.json({ success: true, plans: grouped });
   } catch (err) {
     console.error('Plans error:', err);
-    res.status(500).json({ success: false, message: 'Could not fetch plans' });
+    res.status(500).json({ success: false, message: 'Could not fetch plans from Remadata' });
   }
 });
 
-// ── Initiate payment
+// ── Initiate Paystack payment
 app.post('/initiate-payment', async (req, res) => {
-  const { planId, network, gb, validity, price, phone, email } = req.body;
-  if (!planId || !phone || !price) {
+  const { planId, network, gb, volumeMB, validity, price, phone, email } = req.body;
+
+  if (!planId || !phone || !price || !volumeMB || !network) {
     return res.status(400).json({ success: false, message: 'Missing required fields' });
   }
+
   try {
+    // Save order to Supabase
     const { data: order, error: dbErr } = await supabase
       .from('orders')
       .insert({
         plan_id:    planId,
         network:    network,
         gb:         gb,
+        volume_mb:  volumeMB,
         validity:   validity,
         phone:      phone,
         email:      email || null,
@@ -106,6 +120,7 @@ app.post('/initiate-payment', async (req, res) => {
 
     if (dbErr) throw dbErr;
 
+    // Initialize Paystack transaction
     const paystackRes = await fetch('https://api.paystack.co/transaction/initialize', {
       method: 'POST',
       headers: {
@@ -114,10 +129,17 @@ app.post('/initiate-payment', async (req, res) => {
       },
       body: JSON.stringify({
         email:        email || `${phone}@tiebideals.com`,
-        amount:       Math.round(price * 100),
+        amount:       Math.round(price * 100), // convert to pesewas
         currency:     'GHS',
         reference:    `TD-${order.id}-${Date.now()}`,
-        metadata:     { order_id: order.id, plan_id: planId, phone, network, gb },
+        metadata: {
+          order_id:  order.id,
+          plan_id:   planId,
+          phone:     phone,
+          network:   network,
+          gb:        gb,
+          volume_mb: volumeMB,
+        },
         callback_url: `${APP_URL}/payment-success.html`,
       }),
     });
@@ -125,61 +147,115 @@ app.post('/initiate-payment', async (req, res) => {
     const ps = await paystackRes.json();
     if (!ps.status) throw new Error(ps.message || 'Paystack init failed');
 
-    await supabase.from('orders').update({ paystack_ref: ps.data.reference }).eq('id', order.id);
+    await supabase
+      .from('orders')
+      .update({ paystack_ref: ps.data.reference })
+      .eq('id', order.id);
 
-    res.json({ success: true, orderId: order.id, paymentUrl: ps.data.authorization_url, reference: ps.data.reference });
+    res.json({
+      success:    true,
+      orderId:    order.id,
+      paymentUrl: ps.data.authorization_url,
+      reference:  ps.data.reference,
+    });
   } catch (err) {
     console.error('Payment init error:', err);
     res.status(500).json({ success: false, message: err.message });
   }
 });
 
-// ── Paystack webhook
+// ── Paystack webhook — called automatically after payment
 app.post('/webhook/paystack', async (req, res) => {
-  const hash = crypto.createHmac('sha512', PAYSTACK_SECRET_KEY).update(req.body).digest('hex');
-  if (hash !== req.headers['x-paystack-signature']) return res.sendStatus(401);
+  const hash = crypto
+    .createHmac('sha512', PAYSTACK_SECRET_KEY)
+    .update(req.body)
+    .digest('hex');
+
+  if (hash !== req.headers['x-paystack-signature']) {
+    console.warn('Invalid Paystack webhook signature');
+    return res.sendStatus(401);
+  }
 
   const event = JSON.parse(req.body);
-  if (event.event === 'charge.success') {
-    const { reference, metadata } = event.data;
-    const { order_id, phone, network, gb, plan_id } = metadata;
 
-    await supabase.from('orders').update({ status: 'paid', paid_at: new Date().toISOString() }).eq('id', order_id);
-    await sendData({ order_id, phone, network, gb, plan_id, reference });
+  if (event.event === 'charge.success') {
+    const { metadata } = event.data;
+    const { order_id, phone, network, gb, volume_mb } = metadata;
+
+    console.log(`✅ Payment confirmed — Order ${order_id} | ${network} ${gb}GB → ${phone}`);
+
+    // Mark as paid
+    await supabase
+      .from('orders')
+      .update({ status: 'paid', paid_at: new Date().toISOString() })
+      .eq('id', order_id);
+
+    // Send data via Remadata
+    await sendDataViaRemadata({ order_id, phone, network, gb, volume_mb });
   }
+
   res.sendStatus(200);
 });
 
 // ── Send data via Remadata
-async function sendData({ order_id, phone, network, gb, plan_id, reference }) {
+async function sendDataViaRemadata({ order_id, phone, network, gb, volume_mb }) {
   try {
-    await supabase.from('orders').update({ status: 'sending', sending_at: new Date().toISOString() }).eq('id', order_id);
+    console.log(`📡 Sending ${gb}GB ${network} to ${phone}...`);
 
-    // REPLACE with real Remadata API call:
-    // const r = await fetch(`${REMADATA_BASE_URL}/data/send`, {
-    //   method: 'POST',
-    //   headers: { Authorization: `Token ${REMADATA_API_KEY}`, 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ phone, plan_id, network })
-    // });
-    // const data = await r.json();
-    // if (!data.success) throw new Error(data.message);
+    await supabase
+      .from('orders')
+      .update({ status: 'sending', sending_at: new Date().toISOString() })
+      .eq('id', order_id);
 
-    // MOCK success after 2 seconds (remove when Remadata is live)
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    const networkMap = {
+      'MTN':        'mtn',
+      'AirtelTigo': 'airteltigo',
+      'Telecel':    'telecel',
+      'Glo':        'glo',
+    };
 
-    await supabase.from('orders').update({
-      status:       'delivered',
-      delivered_at: new Date().toISOString(),
-    }).eq('id', order_id);
+    const response = await fetch(`${REMADATA_BASE_URL}/buy-data`, {
+      method: 'POST',
+      headers: {
+        'X-API-KEY':    REMADATA_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ref:         `TD-${order_id}`,
+        phone:       phone,
+        volumeInMB:  volume_mb,
+        networkType: networkMap[network] || network.toLowerCase(),
+      }),
+    });
 
-    console.log(`✅ Data delivered: ${gb}GB ${network} → ${phone}`);
+    const data = await response.json();
+
+    if (data.status !== 'success') {
+      throw new Error(data.message || 'Remadata order failed');
+    }
+
+    console.log(`✅ Data sent successfully — Remadata ref: ${data.data.reference}`);
+
+    await supabase
+      .from('orders')
+      .update({
+        status:          'delivered',
+        delivered_at:    new Date().toISOString(),
+        remadata_ref:    data.data.reference,
+        remadata_status: data.data.status,
+      })
+      .eq('id', order_id);
+
   } catch (err) {
-    console.error('Remadata error:', err);
-    await supabase.from('orders').update({ status: 'failed', error: err.message }).eq('id', order_id);
+    console.error(`❌ Remadata error for order ${order_id}:`, err.message);
+    await supabase
+      .from('orders')
+      .update({ status: 'failed', error: err.message })
+      .eq('id', order_id);
   }
 }
 
-// ── Get order status (frontend polls this)
+// ── Get order status (frontend polls this every 15 seconds)
 app.get('/order/:id', async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -194,7 +270,7 @@ app.get('/order/:id', async (req, res) => {
   }
 });
 
-// ── Admin — get all orders
+// ── Admin dashboard — view all orders
 app.get('/admin/orders', async (req, res) => {
   const adminKey = req.headers['x-admin-key'];
   if (adminKey !== process.env.ADMIN_KEY) return res.sendStatus(401);
@@ -203,7 +279,7 @@ app.get('/admin/orders', async (req, res) => {
       .from('orders')
       .select('*')
       .order('created_at', { ascending: false })
-      .limit(100);
+      .limit(200);
     if (error) throw error;
     res.json({ success: true, orders: data });
   } catch (err) {
@@ -211,4 +287,6 @@ app.get('/admin/orders', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`🚀 Tiebi's Deals server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`🚀 Tiebi's Deals server running on port ${PORT}`);
+});
