@@ -425,57 +425,59 @@ let currentNet = 'MTN';
 let selectedStarsVal = 5;
 
 async function loadPlans() {
+  document.getElementById('plans-grid').innerHTML = `
+    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3)">
+      <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;margin-bottom:1rem;display:block"></i>
+      Loading plans...
+    </div>`;
   try {
-    // Fetch all networks separately to get all plans
-    const networks = ['mtn', 'airteltigo', 'telecel', 'glo'];
-    const networkMap = {
-      mtn: 'MTN',
-      airteltigo: 'AirtelTigo',
-      telecel: 'Telecel',
-      glo: 'Glo'
-    };
+    const res = await fetch(`${API}/plans`);
+    const data = await res.json();
+    if (!data.success) throw new Error('API error');
+    allPlans = data.plans;
 
-    const grouped = {};
-
-    await Promise.all(networks.map(async (net) => {
-      try {
-        const res = await fetch(`${API}/plans?network=${net}`);
-        const data = await res.json();
-        if (data.success && data.plans) {
-          Object.entries(data.plans).forEach(([netName, plans]) => {
-            if (!grouped[netName]) grouped[netName] = [];
-            grouped[netName].push(...plans);
-          });
-        }
-      } catch (e) {
-        console.log(`Could not load ${net} plans:`, e);
+    // Hide tabs with no plans
+    document.querySelectorAll('.tab').forEach(tab => {
+      const net = tab.textContent.trim();
+      if (!allPlans[net] || allPlans[net].length === 0) {
+        tab.style.display = 'none';
       }
-    }));
+    });
 
-    if (Object.keys(grouped).length === 0) {
-      // fallback — try fetching all at once
-      const res = await fetch(`${API}/plans`);
-      const data = await res.json();
-      if (data.success) {
-        allPlans = data.plans;
+    // Mark empty network cards as coming soon
+    document.querySelectorAll('.network-card').forEach(card => {
+      const name = card.querySelector('.network-name').textContent.trim();
+      if (!allPlans[name] || allPlans[name].length === 0) {
+        card.style.opacity = '0.4';
+        card.style.cursor = 'not-allowed';
+        card.querySelector('.network-tag').textContent = 'Coming soon';
+        card.onclick = null;
       }
-    } else {
-      allPlans = grouped;
+    });
+
+    // Set first available network
+    const firstNet = Object.keys(allPlans)[0];
+    if (firstNet) {
+      currentNet = firstNet;
+      document.querySelectorAll('.tab').forEach(t => {
+        t.classList.toggle('active', t.textContent.trim() === firstNet);
+      });
     }
 
     renderPlans();
   } catch (err) {
     document.getElementById('plans-grid').innerHTML = `
       <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)">
-        <i class="fa-solid fa-circle-exclamation" style="font-size:2rem;color:#f59e0b;margin-bottom:.5rem"></i>
-        <p>Could not load plans. <a href="#" onclick="loadPlans()" style="color:var(--primary)">Retry</a></p>
+        <i class="fa-solid fa-circle-exclamation" style="font-size:2rem;color:#f59e0b;margin-bottom:.5rem;display:block"></i>
+        Could not load plans. <a href="#" onclick="loadPlans()" style="color:var(--primary)">Tap to retry</a>
       </div>`;
   }
 }
 
 function setTab(net) {
+  if (!allPlans[net] || allPlans[net].length === 0) return;
   currentNet = net;
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.textContent === net));
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.textContent.trim() === net));
   renderPlans();
   document.getElementById('plans').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -485,17 +487,16 @@ function renderPlans() {
   if (!ps.length) {
     document.getElementById('plans-grid').innerHTML = `
       <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)">
-        <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;margin-bottom:.5rem"></i>
-        <p>Loading ${currentNet} plans...</p>
+        No plans available for ${currentNet} right now.
       </div>`;
     return;
   }
   document.getElementById('plans-grid').innerHTML = ps.map(p => `
-    <div class="plan-card ${p.popular ? 'popular' : ''}" 
-         onclick="openBuy('${p.id}','${p.network}',${p.gb},${p.volumeMB},'${p.validity}',${p.price})">
+    <div class="plan-card ${p.popular ? 'popular' : ''}"
+         onclick="openBuy('${p.id}','${p.network}',${p.gb},${p.volumeMB},'${p.validity.replace(/'/g,"\\'")}',${p.price})">
       ${p.popular ? '<div class="pop-badge">⚡ Most Popular</div>' : ''}
       <div class="plan-gb">${p.gb} <span>GB</span></div>
-      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.72rem"></i> ${p.validity.substring(0, 30)}</div>
+      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.72rem"></i> ${p.validity.substring(0,40)}</div>
       <div class="plan-price">GH₵ ${p.price.toFixed(2)}</div>
       <div class="plan-was">Was GH₵ ${p.was.toFixed(2)}</div>
       <div class="plan-save">${p.save}</div>
@@ -523,11 +524,11 @@ function openBuy(planId, network, gb, volumeMB, validity, price) {
       <input type="tel" id="ph" placeholder="e.g. 024 123 4567" maxlength="13">
     </div>
     <div class="form-group">
-      <label><i class="fa-solid fa-envelope" style="color:var(--primary)"></i> Email (optional — for receipt)</label>
+      <label><i class="fa-solid fa-envelope" style="color:var(--primary)"></i> Email (optional)</label>
       <input type="email" id="em" placeholder="e.g. you@gmail.com">
     </div>
-    <button class="modal-btn" id="pay-btn" 
-      onclick="initiatePayment('${planId}','${network}',${gb},${volumeMB},'${validity}',${price})">
+    <button class="modal-btn" id="pay-btn"
+      onclick="initiatePayment('${planId}','${network}',${gb},${volumeMB},'${validity.replace(/'/g,"\\'")}',${price})">
       <i class="fa-solid fa-lock"></i> Pay GH₵ ${parseFloat(price).toFixed(2)} Securely
     </button>
     <div class="modal-secure">
@@ -561,8 +562,6 @@ async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
       phone:    String(phone),
       email:    email || null
     };
-
-    console.log('Sending payload:', payload);
 
     const res = await fetch(`${API}/initiate-payment`, {
       method: 'POST',
@@ -610,8 +609,12 @@ function initStars() {
       selectedStarsVal = +s.dataset.val;
       stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal));
     });
-    s.addEventListener('mouseenter', () => stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= +s.dataset.val)));
-    s.addEventListener('mouseleave', () => stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal)));
+    s.addEventListener('mouseenter', () => {
+      stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= +s.dataset.val));
+    });
+    s.addEventListener('mouseleave', () => {
+      stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal));
+    });
   });
   stars.forEach((s, i) => { if (i < 5) s.classList.add('active'); });
 }
