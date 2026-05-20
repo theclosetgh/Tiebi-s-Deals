@@ -434,6 +434,8 @@ async function loadPlans() {
         } else {
           card.style.opacity = '1';
           card.style.cursor = 'pointer';
+          card.querySelector('.network-tag').textContent = name === 'MTN' ? 'Widest coverage · Best reliability' : 'Available now';
+          card.onclick = function(){ setTab(name); };
         }
       });
     }
