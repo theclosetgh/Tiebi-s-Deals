@@ -16,190 +16,175 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,250,249,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem;height:60px}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.logo-icon{width:34px;height:34px;background:var(--primary);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;flex-shrink:0}
-.logo-text{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:var(--text)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,250,249,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;height:58px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
+.logo-icon{width:32px;height:32px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+.logo-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:var(--text)}
 .logo-text span{color:var(--primary)}
-.nav-desktop{list-style:none;display:flex;gap:2rem}
-.nav-desktop a{color:var(--text2);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-desktop{list-style:none;display:none;gap:1.5rem}
+.nav-desktop a{color:var(--text2);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
 .nav-desktop a:hover{color:var(--primary)}
-.nav-actions{display:flex;align-items:center;gap:.6rem}
-.nav-wa{background:transparent;color:#25D366;border:1.5px solid #25D366;padding:.45rem 1rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:5px;text-decoration:none;white-space:nowrap}
+.nav-actions{display:flex;align-items:center;gap:.5rem}
+.nav-wa{background:transparent;color:#25D366;border:1.5px solid #25D366;padding:.4rem .8rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:4px;text-decoration:none;white-space:nowrap}
 .nav-wa:hover{background:#25D366;color:#fff}
-.nav-cta{background:var(--primary);color:#fff;border:none;cursor:pointer;padding:.45rem 1rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;transition:background .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-cta{background:var(--primary);color:#fff;border:none;cursor:pointer;padding:.4rem .8rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:600;transition:background .2s;display:flex;align-items:center;gap:4px;white-space:nowrap}
 .nav-cta:hover{background:var(--primary-dark)}
-
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
-.hero-blob{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(14,166,110,0.07) 0%,transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--primary-light);color:var(--primary-dark);border-radius:100px;padding:.35rem 1rem;font-size:.78rem;font-weight:600;margin-bottom:1.5rem;border:1px solid rgba(14,166,110,0.2)}
-h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,8vw,5rem);font-weight:600;line-height:1.1;letter-spacing:-1px;margin-bottom:1.2rem;color:var(--dark)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:6rem 1.25rem 3rem;position:relative;overflow:hidden}
+.hero-blob{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(14,166,110,0.07) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--primary-light);color:var(--primary-dark);border-radius:100px;padding:.35rem .9rem;font-size:.75rem;font-weight:600;margin-bottom:1.25rem;border:1px solid rgba(14,166,110,0.2)}
+h1{font-family:'Fraunces',serif;font-size:clamp(2rem,9vw,5rem);font-weight:600;line-height:1.1;letter-spacing:-1px;margin-bottom:1rem;color:var(--dark)}
 h1 em{color:var(--primary);font-style:normal}
-.hero-sub{font-size:1rem;color:var(--text2);max-width:420px;line-height:1.75;margin-bottom:2rem}
-.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.btn-primary{background:var(--primary);color:#fff;padding:.8rem 1.75rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px;box-shadow:0 4px 16px rgba(14,166,110,0.3)}
+.hero-sub{font-size:.95rem;color:var(--text2);max-width:380px;line-height:1.75;margin-bottom:1.75rem}
+.hero-btns{display:flex;gap:.65rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--primary);color:#fff;padding:.75rem 1.5rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px;box-shadow:0 4px 16px rgba(14,166,110,0.3)}
 .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px)}
-.btn-ghost{background:#fff;color:var(--text);padding:.8rem 1.75rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;font-weight:600;border:1.5px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px}
-.btn-ghost:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
-.hero-trust{display:flex;align-items:center;gap:1rem;margin-top:2rem;flex-wrap:wrap;justify-content:center}
-.trust-item{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--text3);font-weight:500}
-.trust-item i{color:var(--primary);font-size:.8rem}
-
-/* STATS */
-.stats{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.75rem 1.5rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
-.stat{text-align:center;min-width:80px}
-.stat-val{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;color:var(--primary);line-height:1}
-.stat-label{font-size:.75rem;color:var(--text3);margin-top:3px;font-weight:500}
-
-/* SECTIONS */
-.section{padding:4rem 1.25rem;max-width:1080px;margin:0 auto}
-.section-tag{font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem}
-h2{font-family:'Fraunces',serif;font-size:clamp(1.6rem,5vw,2.5rem);font-weight:600;letter-spacing:-.5px;margin-bottom:.75rem;color:var(--dark)}
-.section-sub{color:var(--text2);font-size:.92rem;line-height:1.75;max-width:500px}
-
-/* NETWORKS */
-.networks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:2rem}
-.network-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1rem;text-align:center;transition:all .25s;cursor:pointer;box-shadow:var(--shadow)}
+.btn-ghost{background:#fff;color:var(--text);padding:.75rem 1.5rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;font-weight:600;border:1.5px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.hero-trust{display:flex;align-items:center;gap:.75rem;margin-top:1.75rem;flex-wrap:wrap;justify-content:center}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--text3);font-weight:500}
+.trust-item i{color:var(--primary);font-size:.78rem}
+.stats{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 1rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.stat{text-align:center;padding:.5rem}
+.stat-val{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:600;color:var(--primary);line-height:1}
+.stat-label{font-size:.72rem;color:var(--text3);margin-top:3px;font-weight:500}
+.section{padding:3rem 1.25rem;max-width:1080px;margin:0 auto}
+.section-tag{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem}
+h2{font-family:'Fraunces',serif;font-size:clamp(1.5rem,5vw,2.5rem);font-weight:600;letter-spacing:-.5px;margin-bottom:.65rem;color:var(--dark)}
+.section-sub{color:var(--text2);font-size:.88rem;line-height:1.75;max-width:500px}
+.networks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;margin-top:1.5rem}
+.network-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem .9rem;text-align:center;transition:all .25s;cursor:pointer;box-shadow:var(--shadow)}
 .network-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.net-icon{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto .75rem}
+.net-icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin:0 auto .65rem}
 .mtn-c{background:#FFD700}.at-c{background:#e2001a}.telecel-c{background:#003087}.glo-c{background:#00a651}
-.network-name{font-weight:700;font-size:.88rem;margin-bottom:.25rem;color:var(--dark)}
-.network-tag{font-size:.72rem;color:var(--text3)}
-
-/* PLANS */
-.plans-section{padding:1.5rem 1.25rem 4rem;max-width:1080px;margin:0 auto}
-.plans-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
-.network-tabs{display:flex;gap:.4rem;flex-wrap:wrap;background:#fff;padding:4px;border-radius:10px;border:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tab{padding:.38rem .9rem;border-radius:7px;border:none;background:transparent;color:var(--text2);font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.network-name{font-weight:700;font-size:.82rem;margin-bottom:.2rem;color:var(--dark)}
+.network-tag{font-size:.68rem;color:var(--text3);line-height:1.4}
+.plans-section{padding:1rem 1.25rem 3rem;max-width:1080px;margin:0 auto}
+.plans-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem}
+.network-tabs{display:flex;gap:.35rem;background:#fff;padding:4px;border-radius:10px;border:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.network-tabs::-webkit-scrollbar{display:none}
+.tab{padding:.35rem .85rem;border-radius:7px;border:none;background:transparent;color:var(--text2);font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .tab.active,.tab:hover{background:var(--primary);color:#fff}
-.plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
-.plan-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;position:relative;transition:all .25s;cursor:pointer;box-shadow:var(--shadow)}
+.plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem}
+.plan-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem;position:relative;transition:all .25s;cursor:pointer;box-shadow:var(--shadow)}
 .plan-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-md)}
 .plan-card.popular{border-color:var(--primary)}
-.pop-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap}
-.plan-gb{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--dark);line-height:1}
-.plan-gb span{font-size:.88rem;color:var(--text3);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400}
-.plan-valid{font-size:.7rem;color:var(--text3);margin:.25rem 0 .75rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.plan-price{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;color:var(--primary)}
-.plan-was{font-size:.72rem;color:var(--text3);text-decoration:line-through;margin:.15rem 0}
-.plan-save{display:inline-block;background:var(--primary-light);color:var(--primary-dark);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:100px;margin:.4rem 0 .9rem}
-.plan-btn{width:100%;padding:.6rem;background:var(--bg);color:var(--text);border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;transition:all .2s}
+.pop-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap}
+.plan-gb{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:600;color:var(--dark);line-height:1}
+.plan-gb span{font-size:.82rem;color:var(--text3);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400}
+.plan-valid{font-size:.68rem;color:var(--text3);margin:.2rem 0 .65rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.plan-price{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;color:var(--primary)}
+.plan-was{font-size:.68rem;color:var(--text3);text-decoration:line-through;margin:.15rem 0}
+.plan-save{display:inline-block;background:var(--primary-light);color:var(--primary-dark);font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:100px;margin:.35rem 0 .75rem}
+.plan-btn{width:100%;padding:.55rem;background:var(--bg);color:var(--text);border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:600;transition:all .2s}
 .plan-btn:hover,.plan-card.popular .plan-btn{background:var(--primary);color:#fff;border-color:var(--primary)}
-
-/* HOW */
 .how-bg{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.how-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
-.step-icon{width:40px;height:40px;background:var(--primary-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;margin-bottom:.75rem}
-.step-num{font-family:'Fraunces',serif;font-size:3.5rem;font-weight:600;color:var(--primary);opacity:.12;line-height:1;margin-bottom:.3rem}
-.step-title{font-weight:700;font-size:.88rem;margin-bottom:.3rem;color:var(--dark)}
-.step-text{font-size:.82rem;color:var(--text2);line-height:1.65}
-
-/* REVIEWS */
-.reviews-grid{display:grid;grid-template-columns:1fr;gap:.75rem;margin-top:2rem}
-.review-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;box-shadow:var(--shadow)}
-.stars{color:var(--accent);font-size:.85rem;margin-bottom:.6rem}
-.review-text{font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:.9rem;font-style:italic}
-.reviewer{display:flex;align-items:center;gap:9px}
-.rev-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;color:var(--primary);flex-shrink:0}
-.rev-name{font-weight:700;font-size:.85rem;color:var(--dark)}
-.rev-loc{font-size:.72rem;color:var(--text3);display:flex;align-items:center;gap:3px;margin-top:2px}
-.write-review-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.65rem 1.4rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:1.5rem}
+.how-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:1.5rem}
+.step-icon{width:38px;height:38px;background:var(--primary-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:.95rem;margin-bottom:.65rem}
+.step-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:600;color:var(--primary);opacity:.12;line-height:1;margin-bottom:.25rem}
+.step-title{font-weight:700;font-size:.85rem;margin-bottom:.3rem;color:var(--dark)}
+.step-text{font-size:.78rem;color:var(--text2);line-height:1.65}
+.reviews-grid{display:grid;grid-template-columns:1fr;gap:.65rem;margin-top:1.5rem}
+.review-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;box-shadow:var(--shadow)}
+.stars{color:var(--accent);font-size:.82rem;margin-bottom:.55rem;letter-spacing:1px}
+.review-text{font-size:.82rem;color:var(--text2);line-height:1.7;margin-bottom:.85rem;font-style:italic}
+.reviewer{display:flex;align-items:center;gap:8px}
+.rev-avatar{width:34px;height:34px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;color:var(--primary);flex-shrink:0}
+.rev-name{font-weight:700;font-size:.82rem;color:var(--dark)}
+.rev-loc{font-size:.7rem;color:var(--text3);display:flex;align-items:center;gap:3px;margin-top:2px}
+.write-review-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);padding:.6rem 1.25rem;border-radius:var(--radius);font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:1.25rem}
 .write-review-btn:hover{background:var(--primary);color:#fff}
-
-/* FAQ */
-.faq-list{margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem}
+.faq-list{margin-top:1.25rem;display:flex;flex-direction:column;gap:.55rem}
 .faq-item{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s}
 .faq-item.open{border-color:var(--primary)}
-.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;font-weight:600;font-size:.88rem;color:var(--dark);gap:1rem}
-.faq-q i{color:var(--text3);transition:transform .3s;flex-shrink:0;font-size:.85rem}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;cursor:pointer;font-weight:600;font-size:.82rem;color:var(--dark);gap:.75rem;line-height:1.4}
+.faq-q i{color:var(--text3);transition:transform .3s;flex-shrink:0;font-size:.8rem}
 .faq-item.open .faq-q i{transform:rotate(180deg);color:var(--primary)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
-.faq-item.open .faq-a{max-height:300px;padding:0 1.25rem 1rem}
-.faq-a p{font-size:.85rem;color:var(--text2);line-height:1.75}
-
-/* FOOTER */
-footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top:2rem}
+.faq-item.open .faq-a{max-height:300px;padding:0 1.1rem .9rem}
+.faq-a p{font-size:.8rem;color:var(--text2);line-height:1.75}
+footer{background:var(--dark);color:#b8cfc7;padding:2.5rem 1.25rem 1.5rem;margin-top:2rem}
 .footer-inner{max-width:1080px;margin:0 auto}
-.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;margin-bottom:2rem}
+.footer-top{display:flex;flex-direction:column;gap:1.75rem;margin-bottom:1.75rem}
 .footer-brand .logo-text{color:#fff}
-.footer-desc{font-size:.8rem;color:#6b8c82;margin-top:.5rem;max-width:240px;line-height:1.7}
-.footer-links h4{font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6b8c82;margin-bottom:.7rem}
-.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
-.footer-links a{color:#b8cfc7;text-decoration:none;font-size:.82rem;transition:color .2s}
+.footer-desc{font-size:.78rem;color:#6b8c82;margin-top:.5rem;max-width:260px;line-height:1.7}
+.footer-links-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.footer-links h4{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6b8c82;margin-bottom:.65rem}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.footer-links a{color:#b8cfc7;text-decoration:none;font-size:.8rem;transition:color .2s}
 .footer-links a:hover{color:var(--primary-mid)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
-.footer-copy{font-size:.75rem;color:#4a6358}
-.footer-wa{display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:.45rem 1rem;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:600}
-
-/* MODALS */
-.overlay{position:fixed;inset:0;z-index:200;background:rgba(13,31,24,0.65);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center;padding:0}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.25rem;display:flex;flex-direction:column;gap:.75rem;align-items:center;text-align:center}
+.footer-copy{font-size:.72rem;color:#4a6358}
+.footer-wa{display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:.45rem 1rem;border-radius:8px;text-decoration:none;font-size:.78rem;font-weight:600}
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(13,31,24,0.65);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center}
 .overlay.open{display:flex}
-.modal{background:#fff;border-radius:20px 20px 0 0;padding:1.75rem 1.5rem 2.5rem;width:100%;max-width:500px;position:relative;box-shadow:0 -8px 40px rgba(0,0,0,0.15);max-height:92vh;overflow-y:auto}
-.modal-handle{width:40px;height:4px;background:var(--border);border-radius:100px;margin:0 auto 1.25rem}
-.modal-close{position:absolute;top:1.25rem;right:1.25rem;background:var(--bg);border:none;color:var(--text3);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem}
-.modal h3{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;margin-bottom:.35rem;color:var(--dark)}
-.modal-sub{font-size:.82rem;color:var(--text3);margin-bottom:1.2rem}
-.plan-summary{background:var(--bg);border-radius:10px;padding:.85rem 1rem;margin-bottom:1.35rem;display:flex;justify-content:space-between;align-items:center}
-.ps-label{font-size:.75rem;color:var(--text3);margin-bottom:2px}
-.ps-val{font-weight:700;font-size:.9rem;color:var(--dark)}
-.ps-price{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;color:var(--primary)}
-.form-group{margin-bottom:.9rem}
-.form-group label{display:block;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:.35rem}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;padding:.75rem 1rem;outline:none;transition:border-color .2s;-webkit-appearance:none}
-.form-group textarea{resize:vertical;min-height:85px;font-size:.9rem}
+.modal{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:500px;position:relative;box-shadow:0 -8px 40px rgba(0,0,0,0.15);max-height:92vh;overflow-y:auto}
+.modal-inner{padding:1.5rem 1.25rem 2.5rem}
+.modal-handle{width:36px;height:4px;background:var(--border);border-radius:100px;margin:1rem auto .75rem}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg);border:none;color:var(--text3);width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;z-index:1}
+.modal h3{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;margin-bottom:.3rem;color:var(--dark)}
+.modal-sub{font-size:.8rem;color:var(--text3);margin-bottom:1.1rem}
+.plan-summary{background:var(--bg);border-radius:10px;padding:.8rem 1rem;margin-bottom:1.25rem;display:flex;justify-content:space-between;align-items:center}
+.ps-label{font-size:.72rem;color:var(--text3);margin-bottom:2px}
+.ps-val{font-weight:700;font-size:.88rem;color:var(--dark)}
+.ps-price{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;color:var(--primary)}
+.form-group{margin-bottom:.85rem}
+.form-group label{display:block;font-size:.78rem;font-weight:600;color:var(--text2);margin-bottom:.35rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;padding:.75rem 1rem;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.form-group textarea{resize:vertical;min-height:80px;font-size:.88rem}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary)}
+.phone-wrap{position:relative}
+.phone-wrap input{padding-right:3.25rem}
+.net-badge{position:absolute;right:.75rem;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
+.net-msg{margin-top:.35rem;font-size:.75rem;display:none;align-items:center;gap:5px;padding:.45rem .75rem;border-radius:8px;line-height:1.4}
 .star-input{display:flex;gap:8px;margin-top:.35rem}
-.star-input i{font-size:1.6rem;color:#d1d5db;cursor:pointer;transition:color .15s}
+.star-input i{font-size:1.75rem;color:#d1d5db;cursor:pointer;transition:color .15s}
 .star-input i.active{color:var(--accent)}
-.modal-btn{width:100%;margin-top:1.1rem;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:700;padding:.9rem;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.modal-btn{width:100%;margin-top:1rem;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:700;padding:.9rem;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .modal-btn:hover{background:var(--primary-dark)}
 .modal-btn:disabled{background:#9ca3af;cursor:not-allowed}
-.modal-secure{text-align:center;margin-top:.65rem;font-size:.73rem;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:4px}
-
-/* WHATSAPP FLOAT */
-.wa-float{position:fixed;bottom:1.5rem;right:1.25rem;z-index:50;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;border:none;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s;text-decoration:none}
+.modal-secure{text-align:center;margin-top:.6rem;font-size:.72rem;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:4px}
+.wa-float{position:fixed;bottom:1.25rem;right:1.25rem;z-index:50;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;border:none;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s;text-decoration:none}
 .wa-float:hover{transform:scale(1.1)}
 .wa-pulse{position:absolute;top:0;right:0;width:13px;height:13px;background:#ff3b30;border-radius:50%;border:2px solid #fff}
-
-/* DESKTOP OVERRIDES */
-@media(min-width:768px){
+.spinner{grid-column:1/-1;text-align:center;padding:2.5rem 1rem;color:var(--text3)}
+.spinner i{font-size:1.75rem;margin-bottom:.75rem;display:block}
+@media(min-width:640px){
   nav{padding:0 2rem;height:68px}
   .logo-icon{width:38px;height:38px;font-size:1.1rem}
   .logo-text{font-size:1.3rem}
+  .nav-desktop{display:flex}
   .nav-wa{padding:.5rem 1.1rem;font-size:.85rem}
   .nav-cta{padding:.55rem 1.4rem;font-size:.88rem}
   .hero{padding:9rem 2rem 5rem}
-  .stats{gap:4rem;padding:2.2rem 2rem}
+  .hero-sub{font-size:1.05rem;max-width:480px}
+  .stats{grid-template-columns:repeat(4,1fr);padding:2.2rem 2rem;gap:2rem}
   .stat-val{font-size:2.1rem}
   .section{padding:5rem 2rem}
   .networks-grid{grid-template-columns:repeat(4,1fr);gap:1rem}
   .network-card{padding:1.75rem 1.5rem}
   .net-icon{width:58px;height:58px;font-size:1.5rem}
+  .network-name{font-size:.95rem}
+  .network-tag{font-size:.78rem}
   .plans-section{padding:2rem 2rem 5rem}
-  .plans-grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
+  .plans-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
   .plan-card{padding:1.5rem}
   .plan-gb{font-size:2.2rem}
   .plan-price{font-size:1.6rem}
   .how-grid{grid-template-columns:repeat(4,1fr);gap:2rem}
   .step-icon{width:44px;height:44px;font-size:1.1rem}
   .reviews-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-top{flex-direction:row;justify-content:space-between}
+  .footer-bottom{flex-direction:row;text-align:left}
   .overlay{align-items:center;padding:1rem}
-  .modal{border-radius:20px;padding:2rem;max-width:440px;max-height:90vh}
+  .modal{border-radius:20px;max-height:90vh;max-width:440px}
   .modal-handle{display:none}
+  .modal-inner{padding:2rem}
   footer{padding:3.5rem 2rem 2rem}
 }
-
-/* LOADING SPINNER */
-.spinner{grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3)}
-.spinner i{font-size:2rem;margin-bottom:1rem;display:block}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="logo" href="#">
     <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
@@ -218,7 +203,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-blob"></div>
   <div class="hero-badge"><i class="fa-solid fa-circle-check"></i> Ghana's most affordable data bundles</div>
@@ -236,7 +220,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
   </div>
 </div>
 
-<!-- STATS -->
 <div class="stats">
   <div class="stat"><div class="stat-val">12K+</div><div class="stat-label">Happy customers</div></div>
   <div class="stat"><div class="stat-val">4</div><div class="stat-label">Networks</div></div>
@@ -244,7 +227,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
   <div class="stat"><div class="stat-val">15-30m</div><div class="stat-label">Delivery time</div></div>
 </div>
 
-<!-- NETWORKS -->
 <section class="section" id="networks">
   <div class="section-tag">Networks</div>
   <h2>All major networks covered</h2>
@@ -273,7 +255,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
   </div>
 </section>
 
-<!-- PLANS -->
 <div class="plans-section" id="plans">
   <div class="plans-header">
     <div>
@@ -292,7 +273,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
 <div class="how-bg">
   <section class="section" id="how">
     <div class="section-tag">Process</div>
@@ -321,13 +301,12 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
         <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
         <div class="step-num">04</div>
         <div class="step-title">Data delivered</div>
-        <div class="step-text">Your bundle arrives within 15-30 minutes. Track the status live on screen.</div>
+        <div class="step-text">Your bundle arrives within 15-30 minutes. Track status live on screen.</div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- REVIEWS -->
 <section class="section" id="reviews">
   <div class="section-tag">Customer Reviews</div>
   <h2>What people say</h2>
@@ -336,7 +315,6 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
   <button class="write-review-btn" onclick="openReviewModal()"><i class="fa-solid fa-pen-to-square"></i> Write a Review</button>
 </section>
 
-<!-- FAQ -->
 <div class="how-bg">
   <section class="section" id="faq">
     <div class="section-tag">FAQ</div>
@@ -375,62 +353,60 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
   </section>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div style="display:flex;align-items:center;gap:9px">
+        <div style="display:flex;align-items:center;gap:8px">
           <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
           <div class="logo-text">Tiebi's <span>Deals</span></div>
         </div>
         <p class="footer-desc">Affordable mobile data for every Ghanaian. Fast, secure, and always reliable.</p>
       </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#networks">Networks</a></li>
-          <li><a href="#plans">Data Plans</a></li>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="https://wa.me/233503674353" target="_blank"><i class="fa-brands fa-whatsapp"></i> 0503674353</a></li>
-        </ul>
+      <div class="footer-links-row">
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#networks">Networks</a></li>
+            <li><a href="#plans">Data Plans</a></li>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/233503674353" target="_blank"><i class="fa-brands fa-whatsapp"></i> 0503674353</a></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">2025 Tiebi's Deals. All rights reserved.</div>
-      <a class="footer-wa" href="https://wa.me/233503674353" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      <a class="footer-wa" href="https://wa.me/233503674353" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
     </div>
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
 <a class="wa-float" href="https://wa.me/233503674353" target="_blank">
   <i class="fa-brands fa-whatsapp"></i>
   <div class="wa-pulse"></div>
 </a>
 
-<!-- BUY MODAL -->
 <div class="overlay" id="buy-modal">
   <div class="modal">
     <div class="modal-handle"></div>
     <button class="modal-close" onclick="closeModal('buy-modal')"><i class="fa-solid fa-xmark"></i></button>
-    <div id="buy-body"></div>
+    <div class="modal-inner" id="buy-body"></div>
   </div>
 </div>
 
-<!-- REVIEW MODAL -->
 <div class="overlay" id="review-modal">
   <div class="modal">
     <div class="modal-handle"></div>
     <button class="modal-close" onclick="closeModal('review-modal')"><i class="fa-solid fa-xmark"></i></button>
-    <div id="review-body">
+    <div class="modal-inner" id="review-body">
       <h3>Write a Review</h3>
       <p class="modal-sub">Share your experience with Tiebi's Deals</p>
       <div class="form-group"><label>Your Name</label><input type="text" id="rev-name" placeholder="e.g. Ama Mensah"></div>
@@ -452,135 +428,97 @@ footer{background:var(--dark);color:#b8cfc7;padding:3rem 1.25rem 2rem;margin-top
 </div>
 
 <script>
-const API = 'https://mqqgrcyqsifjkeverbgb.supabase.co/functions/v1/api';
-let allPlans = {};
-let currentNet = 'MTN';
-let selectedStarsVal = 5;
-
-const NET_TAGS = {
-  MTN: 'Widest coverage · Best reliability',
-  AirtelTigo: 'Great value · Fast speeds',
-  Telecel: 'Strong urban coverage',
-  Glo: 'Budget friendly bundles'
-};
-
-const DEFAULT_REVIEWS = [
+const API='https://mqqgrcyqsifjkeverbgb.supabase.co/functions/v1/api';
+let allPlans={},currentNet='MTN',selectedStarsVal=5;
+const NET_TAGS={MTN:'Widest coverage · Best reliability',AirtelTigo:'Great value · Fast speeds',Telecel:'Strong urban coverage',Glo:'Budget friendly bundles'};
+const NET_COLORS={MTN:'#FFD700',AirtelTigo:'#e2001a',Telecel:'#003087',Glo:'#00a651'};
+const NET_ICONS={MTN:'fa-signal',AirtelTigo:'fa-wifi',Telecel:'fa-tower-broadcast',Glo:'fa-globe'};
+const DEFAULT_REVIEWS=[
   {name:'Ama Kusi',loc:'Accra',stars:5,text:'I save almost GH20 every month. Delivery was smooth - I told all my friends about Tiebi Deals!'},
   {name:'Kweku Boateng',loc:'Kumasi',stars:5,text:'I buy data for my whole family here. Prices are genuinely the cheapest I have found in Ghana.'},
   {name:'Serwaa Asante',loc:'Takoradi',stars:5,text:'Fast, reliable and affordable. 4 months in and not a single issue. Tiebi is the best!'}
 ];
 
-function loadReviews() {
-  try {
-    const saved = localStorage.getItem('tiebi_reviews');
-    renderReviews(saved ? JSON.parse(saved) : DEFAULT_REVIEWS);
-  } catch(e) {
-    renderReviews(DEFAULT_REVIEWS);
-  }
+function loadReviews(){
+  try{const s=localStorage.getItem('tiebi_reviews');renderReviews(s?JSON.parse(s):DEFAULT_REVIEWS);}
+  catch(e){renderReviews(DEFAULT_REVIEWS);}
 }
 
-function renderReviews(reviews) {
-  document.getElementById('reviews-grid').innerHTML = reviews.map(r => {
-    const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
-    const initials = r.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+function renderReviews(reviews){
+  document.getElementById('reviews-grid').innerHTML=reviews.map(r=>{
+    const stars='★'.repeat(r.stars)+'☆'.repeat(5-r.stars);
+    const ini=r.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
     return `<div class="review-card">
       <div class="stars">${stars}</div>
       <div class="review-text">"${r.text}"</div>
       <div class="reviewer">
-        <div class="rev-avatar">${initials}</div>
-        <div>
-          <div class="rev-name">${r.name}</div>
-          <div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.65rem"></i> ${r.loc}</div>
-        </div>
-      </div>
-    </div>`;
+        <div class="rev-avatar">${ini}</div>
+        <div><div class="rev-name">${r.name}</div><div class="rev-loc"><i class="fa-solid fa-location-dot" style="font-size:.62rem"></i> ${r.loc}</div></div>
+      </div></div>`;
   }).join('');
 }
 
-function saveReview(review) {
-  try {
-    const saved = localStorage.getItem('tiebi_reviews');
-    const reviews = saved ? JSON.parse(saved) : [...DEFAULT_REVIEWS];
-    reviews.unshift(review);
-    localStorage.setItem('tiebi_reviews', JSON.stringify(reviews));
+function saveReview(r){
+  try{
+    const s=localStorage.getItem('tiebi_reviews');
+    const reviews=s?JSON.parse(s):[...DEFAULT_REVIEWS];
+    reviews.unshift(r);
+    localStorage.setItem('tiebi_reviews',JSON.stringify(reviews));
     renderReviews(reviews);
-  } catch(e) {
-    renderReviews([review, ...DEFAULT_REVIEWS]);
-  }
+  }catch(e){renderReviews([r,...DEFAULT_REVIEWS]);}
 }
 
-async function loadPlans() {
-  try {
-    const res = await fetch(API + '/plans');
-    const data = await res.json();
-    if (!data.success || !data.plans) throw new Error('No plans');
-    allPlans = data.plans;
-    const available = Object.keys(allPlans).filter(n => allPlans[n] && allPlans[n].length > 0);
-    if (available.length === 0) throw new Error('No plans available');
-    currentNet = available[0];
-
-    ['MTN','AirtelTigo','Telecel','Glo'].forEach(net => {
-      const tab = document.getElementById('tab-' + net);
-      const card = document.getElementById('card-' + net);
-      const isAvail = available.includes(net);
-      if (tab) {
-        tab.style.display = isAvail ? 'inline-block' : 'none';
-        tab.classList.toggle('active', net === currentNet);
-      }
-      if (card) {
-        const tag = card.querySelector('.network-tag');
-        if (isAvail) {
-          card.style.opacity = '1';
-          card.style.cursor = 'pointer';
-          card.style.pointerEvents = 'auto';
-          if (tag) tag.textContent = NET_TAGS[net] || 'Available now';
-          card.onclick = (function(n){ return function(){ setTab(n); }; })(net);
-        } else {
-          card.style.opacity = '0.4';
-          card.style.cursor = 'not-allowed';
-          card.style.pointerEvents = 'none';
-          if (tag) tag.textContent = 'Coming soon';
-          card.onclick = null;
+async function loadPlans(){
+  try{
+    const res=await fetch(API+'/plans');
+    const data=await res.json();
+    if(!data.success||!data.plans) throw new Error('No plans');
+    allPlans=data.plans;
+    const avail=Object.keys(allPlans).filter(n=>allPlans[n]&&allPlans[n].length>0);
+    if(!avail.length) throw new Error('No plans available');
+    currentNet=avail[0];
+    ['MTN','AirtelTigo','Telecel','Glo'].forEach(net=>{
+      const tab=document.getElementById('tab-'+net);
+      const card=document.getElementById('card-'+net);
+      const isAvail=avail.includes(net);
+      if(tab){tab.style.display=isAvail?'inline-block':'none';tab.classList.toggle('active',net===currentNet);}
+      if(card){
+        const tag=card.querySelector('.network-tag');
+        if(isAvail){
+          card.style.opacity='1';card.style.cursor='pointer';card.style.pointerEvents='auto';
+          if(tag)tag.textContent=NET_TAGS[net]||'Available now';
+          card.onclick=(function(n){return function(){setTab(n);};})(net);
+        }else{
+          card.style.opacity='0.4';card.style.cursor='not-allowed';card.style.pointerEvents='none';
+          if(tag)tag.textContent='Coming soon';card.onclick=null;
         }
       }
     });
     renderPlans();
-  } catch(err) {
-    document.getElementById('plans-grid').innerHTML = `
-      <div class="spinner">
-        <i class="fa-solid fa-circle-exclamation" style="color:#f59e0b"></i>
-        Could not load plans. <a href="#" onclick="loadPlans()" style="color:var(--primary)">Tap to retry</a>
-      </div>`;
+  }catch(err){
+    document.getElementById('plans-grid').innerHTML=`<div class="spinner"><i class="fa-solid fa-circle-exclamation" style="color:#f59e0b"></i>Could not load plans. <a href="#" onclick="loadPlans()" style="color:var(--primary)">Tap to retry</a></div>`;
   }
 }
 
-function setTab(net) {
-  if (!allPlans[net] || !allPlans[net].length) return;
-  currentNet = net;
-  ['MTN','AirtelTigo','Telecel','Glo'].forEach(n => {
-    const t = document.getElementById('tab-' + n);
-    if (t) t.classList.toggle('active', n === net);
-  });
+function setTab(net){
+  if(!allPlans[net]||!allPlans[net].length)return;
+  currentNet=net;
+  ['MTN','AirtelTigo','Telecel','Glo'].forEach(n=>{const t=document.getElementById('tab-'+n);if(t)t.classList.toggle('active',n===net);});
   renderPlans();
   document.getElementById('plans').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function renderPlans() {
-  const ps = allPlans[currentNet] || [];
-  if (!ps.length) {
-    document.getElementById('plans-grid').innerHTML = `
-      <div class="spinner">No plans for ${currentNet} right now.</div>`;
-    return;
-  }
-  document.getElementById('plans-grid').innerHTML = ps.map(p => {
-    const vid = String(p.id).replace(/['"]/g,'');
-    const vnet = String(p.network).replace(/['"]/g,'');
-    const vval = String(p.validity).replace(/['"]/g,'').substring(0,40);
-    return `<div class="plan-card ${p.popular?'popular':''}"
-      onclick="openBuy('${vid}','${vnet}',${p.gb},${p.volumeMB},'${vval}',${p.price})">
+function renderPlans(){
+  const ps=allPlans[currentNet]||[];
+  if(!ps.length){document.getElementById('plans-grid').innerHTML=`<div class="spinner">No plans for ${currentNet} right now.</div>`;return;}
+  document.getElementById('plans-grid').innerHTML=ps.map(p=>{
+    const vid=String(p.id).replace(/['"]/g,'');
+    const vnet=String(p.network).replace(/['"]/g,'');
+    const vval=String(p.validity).replace(/['"]/g,'').substring(0,40);
+    return `<div class="plan-card ${p.popular?'popular':''}" onclick="openBuy('${vid}','${vnet}',${p.gb},${p.volumeMB},'${vval}',${p.price})">
       ${p.popular?'<div class="pop-badge">Most Popular</div>':''}
       <div class="plan-gb">${p.gb} <span>GB</span></div>
-      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.65rem"></i> ${vval}</div>
+      <div class="plan-valid"><i class="fa-regular fa-clock" style="font-size:.62rem"></i> ${vval}</div>
       <div class="plan-price">GH&#8373; ${p.price.toFixed(2)}</div>
       <div class="plan-was">Was GH&#8373; ${p.was.toFixed(2)}</div>
       <div class="plan-save">${p.save}</div>
@@ -589,8 +527,40 @@ function renderPlans() {
   }).join('');
 }
 
-function openBuy(planId, network, gb, volumeMB, validity, price) {
-  document.getElementById('buy-body').innerHTML = `
+function detectNetwork(phone){
+  const n=phone.replace(/\s/g,'');
+  if(/^(024|025|053|055|059|054)/.test(n))return 'MTN';
+  if(/^(026|056|027|057)/.test(n))return 'AirtelTigo';
+  if(/^(050|020|023|028)/.test(n))return 'Telecel';
+  if(/^(0231|0232)/.test(n))return 'Glo';
+  return null;
+}
+
+function checkNetwork(planNetwork){
+  const phone=document.getElementById('ph').value.trim();
+  const badge=document.getElementById('net-badge');
+  const msg=document.getElementById('net-msg');
+  const clean=phone.replace(/\s/g,'');
+  if(clean.length<3){badge.style.display='none';msg.style.display='none';return;}
+  const detected=detectNetwork(clean);
+  if(detected){
+    badge.style.display='flex';
+    badge.style.background=NET_COLORS[detected];
+    badge.style.color=detected==='MTN'?'#0a0a0a':'#fff';
+    badge.innerHTML=`<i class="fa-solid ${NET_ICONS[detected]}"></i>`;
+    msg.style.display='flex';
+    if(detected!==planNetwork){
+      msg.style.background='#fef2f2';msg.style.color='#dc2626';msg.style.border='1px solid #fca5a5';
+      msg.innerHTML=`<i class="fa-solid fa-triangle-exclamation"></i> Looks like a <strong>${detected}</strong> number but you selected <strong>${planNetwork}</strong> data.`;
+    }else{
+      msg.style.background='#e6f7f1';msg.style.color='#0a7d53';msg.style.border='1px solid #6ee7b7';
+      msg.innerHTML=`<i class="fa-solid fa-circle-check"></i> ${detected} number confirmed`;
+    }
+  }else{badge.style.display='none';msg.style.display='none';}
+}
+
+function openBuy(planId,network,gb,volumeMB,validity,price){
+  document.getElementById('buy-body').innerHTML=`
     <h3>Complete Purchase</h3>
     <p class="modal-sub">Fill in your details to receive your bundle</p>
     <div class="plan-summary">
@@ -599,98 +569,78 @@ function openBuy(planId, network, gb, volumeMB, validity, price) {
     </div>
     <div class="form-group">
       <label><i class="fa-solid fa-mobile-screen" style="color:var(--primary)"></i> Phone number to top up</label>
-      <input type="tel" id="ph" placeholder="e.g. 024 123 4567" maxlength="13">
+      <div class="phone-wrap">
+        <input type="tel" id="ph" placeholder="e.g. 024 123 4567" maxlength="13" oninput="checkNetwork('${network}')">
+        <div class="net-badge" id="net-badge"></div>
+      </div>
+      <div class="net-msg" id="net-msg"></div>
     </div>
     <div class="form-group">
       <label><i class="fa-solid fa-envelope" style="color:var(--primary)"></i> Email (optional)</label>
       <input type="email" id="em" placeholder="e.g. you@gmail.com">
     </div>
-    <button class="modal-btn" id="pay-btn"
-      onclick="initiatePayment('${planId}','${network}',${gb},${volumeMB},'${validity}',${price})">
+    <button class="modal-btn" id="pay-btn" onclick="initiatePayment('${planId}','${network}',${gb},${volumeMB},'${validity}',${price})">
       <i class="fa-solid fa-lock"></i> Pay GH&#8373; ${parseFloat(price).toFixed(2)} Securely
     </button>
-    <div class="modal-secure"><i class="fa-solid fa-shield-halved"></i> Protected by Paystack · SSL encrypted</div>
-  `;
+    <div class="modal-secure"><i class="fa-solid fa-shield-halved"></i> Protected by Paystack &middot; SSL encrypted</div>`;
   document.getElementById('buy-modal').classList.add('open');
 }
 
-async function initiatePayment(planId, network, gb, volumeMB, validity, price) {
-  const phone = document.getElementById('ph').value.trim();
-  const email = document.getElementById('em').value.trim();
-  if (!phone || phone.replace(/\s/g,'').length < 10) {
-    alert('Please enter a valid phone number.');
-    return;
-  }
-  const btn = document.getElementById('pay-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
-  try {
-    const payload = {
-      planId:String(planId), network:String(network),
-      gb:Number(gb), volumeMB:Number(volumeMB),
-      validity:String(validity), price:Number(price),
-      phone:String(phone), email:email||null
-    };
-    const res = await fetch(API+'/initiate-payment',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload)
-    });
-    const data = await res.json();
-    if (!data.success) throw new Error(data.message);
-    localStorage.setItem('td_order_id', data.orderId);
-    localStorage.setItem('td_phone', phone);
-    localStorage.setItem('td_network', network);
-    localStorage.setItem('td_gb', gb);
-    window.location.href = data.paymentUrl;
-  } catch(err) {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-lock"></i> Pay Securely';
-    alert('Payment could not be initiated: ' + err.message);
+async function initiatePayment(planId,network,gb,volumeMB,validity,price){
+  const phone=document.getElementById('ph').value.trim();
+  const email=document.getElementById('em').value.trim();
+  if(!phone||phone.replace(/\s/g,'').length<10){alert('Please enter a valid phone number.');return;}
+  const btn=document.getElementById('pay-btn');
+  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+  try{
+    const payload={planId:String(planId),network:String(network),gb:Number(gb),volumeMB:Number(volumeMB),validity:String(validity),price:Number(price),phone:String(phone),email:email||null};
+    const res=await fetch(API+'/initiate-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const data=await res.json();
+    if(!data.success)throw new Error(data.message);
+    localStorage.setItem('td_order_id',data.orderId);
+    localStorage.setItem('td_phone',phone);
+    localStorage.setItem('td_network',network);
+    localStorage.setItem('td_gb',gb);
+    window.location.href=data.paymentUrl;
+  }catch(err){
+    btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-lock"></i> Pay Securely';
+    alert('Payment could not be initiated: '+err.message);
   }
 }
 
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.overlay').forEach(o => {
-  o.addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
-});
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.overlay').forEach(o=>{o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
 
-function toggleFaq(el) {
-  const item = el.parentElement;
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
+function toggleFaq(el){
+  const item=el.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
 }
 
-function initStars() {
-  selectedStarsVal = 5;
-  const stars = document.querySelectorAll('#star-input i');
-  stars.forEach(s => {
-    s.classList.toggle('active', +s.dataset.val <= selectedStarsVal);
-    s.addEventListener('click', () => {
-      selectedStarsVal = +s.dataset.val;
-      stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal));
-    });
-    s.addEventListener('mouseenter', () => stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= +s.dataset.val)));
-    s.addEventListener('mouseleave', () => stars.forEach(x => x.classList.toggle('active', +x.dataset.val <= selectedStarsVal)));
+function initStars(){
+  selectedStarsVal=5;
+  const stars=document.querySelectorAll('#star-input i');
+  stars.forEach(s=>{
+    s.classList.toggle('active',+s.dataset.val<=selectedStarsVal);
+    s.addEventListener('click',()=>{selectedStarsVal=+s.dataset.val;stars.forEach(x=>x.classList.toggle('active',+x.dataset.val<=selectedStarsVal));});
+    s.addEventListener('mouseenter',()=>stars.forEach(x=>x.classList.toggle('active',+x.dataset.val<=+s.dataset.val)));
+    s.addEventListener('mouseleave',()=>stars.forEach(x=>x.classList.toggle('active',+x.dataset.val<=selectedStarsVal)));
   });
 }
 
-function openReviewModal() {
-  document.getElementById('review-modal').classList.add('open');
-  setTimeout(initStars, 50);
-}
+function openReviewModal(){document.getElementById('review-modal').classList.add('open');setTimeout(initStars,50);}
 
-function submitReview() {
-  const name = document.getElementById('rev-name').value.trim();
-  const loc  = document.getElementById('rev-loc').value.trim();
-  const text = document.getElementById('rev-text').value.trim();
-  if (!name || !text) { alert('Please fill in your name and review.'); return; }
-  saveReview({name, loc:loc||'Ghana', stars:selectedStarsVal, text});
+function submitReview(){
+  const name=document.getElementById('rev-name').value.trim();
+  const loc=document.getElementById('rev-loc').value.trim();
+  const text=document.getElementById('rev-text').value.trim();
+  if(!name||!text){alert('Please fill in your name and review.');return;}
+  saveReview({name,loc:loc||'Ghana',stars:selectedStarsVal,text});
   closeModal('review-modal');
-  document.getElementById('rev-name').value = '';
-  document.getElementById('rev-loc').value  = '';
-  document.getElementById('rev-text').value = '';
+  document.getElementById('rev-name').value='';
+  document.getElementById('rev-loc').value='';
+  document.getElementById('rev-text').value='';
   alert('Thank you for your review!');
 }
 
